@@ -9,8 +9,36 @@
     <title>Global Pen</title>
 </head>
 <body>
-    <div id="pens">Pens: 0 </div>
-    <button onclick="sellPen()">Sell Pen</button>
+    <div id="topDiv">
+        <h1>Pens: <span id=pens>0</span></h1>
+    </div>
+
+    <div id="leftDiv">
+        <button onclick="sellPen()">Sell Pen</button>
+        <div id="businessDiv">
+            <h2> Business </h3>
+            <div>Available Funds: $ <span id="funds">0</span></div>
+            <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
+            <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
+            Price per pen $<span id="penprice">0.25</span>
+        </div>
+        <div id="productionDiv">
+            <div id="materialsDiv">
+                <h2>Materials</h2>
+                <button id="btnBuyMat" onclick='buyMat()' disabled="">Materials</button>
+                <span id="mat">1000</span>
+                </br>
+                Cost: $ <span id="matCost">10</span>
+            </div>
+            <div id="salesDiv">
+                <h2>Sales Team</h2>
+                <h3>Pens Sold per Second <span id="penSalesRate">0</span></h3>
+                <div>Workforce: <span id="workforce">0</span></div>
+                <button onclick="hirePerson()">Hire</button> 
+                <div>cost: $ <span id="hirecost">0</span></div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="main.js"></script>
 </html>
