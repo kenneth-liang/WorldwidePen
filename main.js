@@ -7,19 +7,31 @@ var matCost = 10
 
 var hireCost = 5 
 var workForce = 0;
+var penSaleRate = 2;
 
 function sellPen(){
-    pens += 1
-    funds += penCost 
-    materials -= 1
-    document.getElementById("pens").textContent = pens;
-    document.getElementById("funds").textContent = funds;
-    document.getElementById("mat").textContent = materials;
+
+    if (materials <= 0) {
+        materials = 0;
+        document.getElementById("mat").textContent = 0;
+    } else {
+        materials -= 1;
+        pens += 1;
+        funds += penCost;
+        document.getElementById("mat").textContent = materials;
+        document.getElementById("pens").textContent = pens;
+        document.getElementById("funds").textContent = funds;
+    }
+
+    // if we cannot afford any materials to continue play
+    if (materials === 0 && funds < matCost){
+        loseGame();
+    }
 }
 
 function lowerPrice(){
     penCost -= .01
-    document.getElementById("penprice").textContent = penCost
+    document.getElementById("penprice").textContent = penCost;
 }
 
 function raisePrice(){
@@ -43,12 +55,23 @@ function hirePerson(){
     document.getElementById("funds").textContent = funds;
     workForce++
     document.getElementById("workForce").textContent = workForce;
-    hireCost += 5; 
+    hireCost += 2; 
     document.getElementById("hireCost").textContent = hireCost;
 
     //autoclicker 
     setInterval(function() { 
         sellPen();
-    },400)
+    },200)
+
+    updateSellRate();
 }
 
+function updateSellRate(){
+    document.getElementById("penSalesRate").textContent = penSaleRate;
+    penSaleRate += 2;
+}
+
+
+function loseGame() {
+  document.getElementById("gameStatus").textContent = "Lose";
+}
