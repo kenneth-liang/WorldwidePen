@@ -1,26 +1,26 @@
 var pens = 0 
 var funds = 0 
-var penCost = 0.25 
-
+var penCost = 0.25 // initial
 var materials = 1000
-var matCost = 10
-
+var matCost = 25
 var hireCost = 5 
 var workForce = 0;
 var penSaleRate = 2;
+var manufacturingStatus = 0;
 
-function sellPen(){
+
+function sellPen(number){
 
     if (materials <= 0) {
         materials = 0;
         document.getElementById("mat").textContent = 0;
     } else {
-        materials -= 1;
-        pens += 1;
+        pens += number;
+        materials -= number;
         funds += penCost;
         document.getElementById("mat").textContent = materials;
         document.getElementById("pens").textContent = pens;
-        document.getElementById("funds").textContent = funds;
+        document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     }
 
     // if we cannot afford any materials to continue play
@@ -30,38 +30,42 @@ function sellPen(){
 }
 
 function lowerPrice(){
-    penCost -= .01
-    document.getElementById("penprice").textContent = penCost;
+    if (penCost >= 0.01) {
+        penCost -= .01
+        document.getElementById("penprice").innerHTML = penCost.toFixed(2);
+    }
 }
 
 function raisePrice(){
     penCost += .01
-    document.getElementById("penprice").textContent = penCost
+    document.getElementById("penprice").innerHTML = penCost.toFixed(2);
 }
 
 function buyMat(){
     if (matCost > funds) return
     funds -= matCost 
-    document.getElementById("funds").textContent = funds;
-    materials += 200
-    document.getElementById("mat").textContent = materials
+    materials += 1000
     matCost += 5
+    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+    document.getElementById("mat").textContent = materials
     document.getElementById("matCost").textContent = matCost
 }
 
 function hirePerson(){
     if (hireCost > funds) return 
-    funds -= hireCost
-    document.getElementById("funds").textContent = funds;
     workForce++
+    funds -= hireCost
+    hireCost = 5 + Math.pow(1.1, (workForce + 5)); 
+    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     document.getElementById("workForce").textContent = workForce;
-    hireCost += 2; 
-    document.getElementById("hireCost").textContent = hireCost;
+    document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
 
-    //autoclicker 
+
+    // autoclicker 
+    // your employees can sell 2 pens per second 
     setInterval(function() { 
-        sellPen();
-    },200)
+        sellPen(1);
+    },500)
 
     updateSellRate();
 }
@@ -75,3 +79,24 @@ function updateSellRate(){
 function loseGame() {
   document.getElementById("gameStatus").textContent = "Lose";
 }
+
+//need to be enabled by upgrade 
+// automatically buys materials when materials are out
+function toggleManfacturer(){
+    if (manufacturingStatus === 1){
+        manufacturingStatus = 0;
+        document.getElementById('manuStatus').textContent = "OFF";
+    } else {
+        manufacturingStatus = 1;
+        document.getElementById("manuStatus").textContent = "ON";
+
+    }
+}
+
+window.setInterval(function () {
+    if (manufacturingStatus === 1 && materials <= 1){
+        buyMat();
+    }
+})
+
+
