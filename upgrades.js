@@ -1,0 +1,2 @@
+var upgrades = [] 
+var activeUpgrades = []
