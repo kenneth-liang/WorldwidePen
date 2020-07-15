@@ -5,9 +5,10 @@ var materials = 1000
 var matCost = 25
 var hireCost = 5 
 var workForce = 0;
-var penSaleRate = 2;
+var displaySaleRate = 2;
 var manufacturingStatus = 0;
 
+var saleRate = 2
 
 function sellPen(number){
 
@@ -63,16 +64,18 @@ function hirePerson(){
 
     // autoclicker 
     // your employees can sell 2 pens per second 
+    // sellRate = 1000 / (500/workForce)// fix
     setInterval(function() { 
-        sellPen(1);
-    },500)
+        sellPen(saleRate);
+    }, 1000)
 
     updateSellRate();
 }
 
 function updateSellRate(){
-    document.getElementById("penSalesRate").textContent = penSaleRate;
-    penSaleRate += 2;
+    document.getElementById("displaySaleRate").textContent = displaySaleRate;
+    // penSaleRate = Math.floor(1000 / sellRate);
+    displaySaleRate += saleRate;
 }
 
 
