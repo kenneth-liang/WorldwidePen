@@ -9,64 +9,68 @@
     <title>Worldwide Pen</title>
 </head>
 <body>
-    <div class="animation-container">
-        <div>Cool thing here</div>
-    </div>
-    <div id="topDiv">
-        <h1>Pens: <span id=pens>0</span></h1>
-    </div>
-    <div id="gameDiv">
-        <!-- <div>Game Status: <span id="gameStatus">Progress</span></div> -->
-        <button onclick="sellPen(1)">Sell Pen</button>
-    </div>
-    </br>
-
-    <div id="leftDiv">
-        <div id="businessDiv">
-            <h3> Business </h3>
-            <div>Available Funds: $ <span id="funds">0</span></div>
-            <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
-            <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
-            Price per pen $<span id="penprice">0.25</span>
+    <div class="game-container">
+        <div class="animation-container">
+            <div>Cool thing here</div>
         </div>
-        <div id="productionDiv">
-            <div id="materialsDiv">
-                <h3>Materials</h3>
-                <button id="btnBuyMat" onclick='buyMat()'>Materials</button>
-                <span id="mat">1000</span>
-                </br>
-                Cost: $ <span id="matCost">10</span>
+        <div class="game-controlls">
+            
+            <div id="topDiv">
+                <h1>Pens: <span id=pens>0</span></h1>
+            </div>
+            <div id="gameDiv">
+                <div>Game Status: <span id="gameStatus">Progress</span></div>
+                <button onclick="sellPen(1)">Sell Pen</button>
+            </div>
+            </br>
 
-                <div id="manufacturer">
-                    <button id="btnManufacturer" onclick="toggleManfacturer()">
-                        Manufacturing
-                    </button>
-                    <span id="manuStatus">OFF</span>
+            <div id="leftDiv">
+                <div id="businessDiv">
+                    <h3> Business </h3>
+                    <div>Available Funds: $ <span id="funds">0</span></div>
+                    <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
+                    <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
+                    Price per pen $<span id="penprice">0.25</span>
+                </div>
+                <div id="productionDiv">
+                    <div id="materialsDiv">
+                        <h3>Materials</h3>
+                        <button id="btnBuyMat" onclick='buyMat()'>Materials</button>
+                        <span id="mat">1000</span>
+                        </br>
+                        Cost: $ <span id="matCost">10</span>
+
+                        <div id="manufacturer" style="visibility: hidden">
+                            <button id="btnManufacturer" onclick="toggleManfacturer()">
+                                Manufacturing
+                            </button>
+                            <span id="manuStatus">OFF</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-        </div>
-    </div>
+            <div id="middleDiv">
+                <div id="salesDiv" style="visibility: hidden">
+                    <h3>Sales Team</h3>
+                    <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div>
+                    <div>Workforce: <span id="workForce">0</span> employees</div>
+                    <button onclick="hirePerson()">Hire</button>
+                    <div>Cost: $ <span id="hireCost">5.00</span></div>
+                </div>
+            </div>
 
-    <div id="middleDiv">
-        <div id="salesDiv">
-            <h3>Sales Team</h3>
-            <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div>
-            <div>Workforce: <span id="workForce">0</span> employees</div>
-            <button onclick="hirePerson()">Hire</button>
-            <div>Cost: $ <span id="hireCost">5.00</span></div>
-        </div>
-    </div>
-
-    <div id="rightDiv">
-        <div id="upgradesDiv">
-            <h3>Upgrades</h3>
-            <div class="upgradeList">
- 
+            <div id="rightDiv">
+                <div id="upgradesDiv" style="visibility: hidden">
+                    <h3>Upgrades</h3>
+                    <div id="upgradeList">
+                        <!-- display upgrades here -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
 </body>
 <script src="main.js"></script>
 <script src="upgrades.js"></script>

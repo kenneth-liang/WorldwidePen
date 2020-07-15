@@ -25,9 +25,10 @@ function sellPen(number){
     }
 
     // if we cannot afford any materials to continue play
-    if (materials === 0 && funds < matCost){
+    if (materials === 0 && funds < matCost) {
         loseGame();
     }
+
 }
 
 function lowerPrice(){
@@ -65,6 +66,8 @@ function hirePerson(){
     // autoclicker 
     // your employees can sell 2 pens per second 
     // sellRate = 1000 / (500/workForce)// fix
+    // debugger
+    // saleRate += displaySaleRate;
     setInterval(function() { 
         sellPen(saleRate);
     }, 1000)
@@ -73,9 +76,10 @@ function hirePerson(){
 }
 
 function updateSellRate(){
+    // debugger
+    displaySaleRate = workForce * saleRate;
     document.getElementById("displaySaleRate").textContent = displaySaleRate;
     // penSaleRate = Math.floor(1000 / sellRate);
-    displaySaleRate += saleRate;
 }
 
 
@@ -96,10 +100,69 @@ function toggleManfacturer(){
     }
 }
 
+function handleUpgrades(){
+    for (let i = 0; i < upgrades.length; i++){
+        // debugger
+        if (upgrades[i].uses > 0 && upgrades[i].setOff()) {
+          revealUpgrade(upgrades[i]);
+          upgrades[i].uses = upgrades[i].uses - 1;
+          activeUpgrades.push(upgrades[i]);
+        }
+    }
+
+    for (let j = 0; j < activeUpgrades.length;j++){
+        if (activeUpgrades[j].cost()){
+            document.getElementById(activeUpgrades[j].id).disabled = false;
+        } else {
+            document.getElementById(activeUpgrades[j].id).disabled = true;
+        }
+    }
+}
+
+function revealUpgrade(upgrade) {
+    let element = document.getElementById("upgradeList")
+    let newUpgrade = document.createElement("button");
+    newUpgrade.setAttribute("id", upgrade.id);
+
+    newUpgrade.onclick = function(){upgrade.effect()};
+    newUpgrade.setAttribute("class","upgradeButton");
+    element.appendChild(newUpgrade, element.firstChild);
+
+    let span = document.createElement("span");
+    span.style.fontWeight = "bold";
+    newUpgrade.appendChild(span);
+
+    let title = document.createTextNode(upgrade.title);
+    span.appendChild(title)
+
+    let cost = document.createTextNode(upgrade.priceTag);
+    newUpgrade.appendChild(cost);
+
+    let div = document.createElement("div");
+    newUpgrade.appendChild(div);
+
+    let description = document.createTextNode(upgrade.description);
+    newUpgrade.appendChild(description)
+}
+
+
 window.setInterval(function () {
+    handleUpgrades();
     if (manufacturingStatus === 1 && materials <= 1){
         buyMat();
     }
+
+    if (pens > 15){
+        document.getElementById("salesDiv").style = "visibility: visible";
+    }
+
+    if (workForce >= 1){
+        document.getElementById("upgradesDiv").style = "visibility: visible";
+    }
+
+
+    
+
 })
 
 
