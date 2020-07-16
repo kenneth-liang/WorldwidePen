@@ -16,6 +16,7 @@
         <div class="game-controlls">
             
             <div id="topDiv">
+                <!-- messages -->
                 <h1>Pens: <span id=pens>0</span></h1>
             </div>
             <div id="gameDiv">
@@ -59,9 +60,15 @@
                     <button onclick="hirePerson()">Hire</button>
                     <div>Cost: $ <span id="hireCost">5.00</span></div>
                 </div>
+                <div id="aiDiv" style="visibility: hidden">
+                    ...
+                </div>
             </div>
 
             <div id="rightDiv">
+                <div id="globalStatus">
+
+                </div>
                 <div id="upgradesDiv" style="visibility: hidden">
                     <h3>Upgrades</h3>
                     <div id="upgradeList">
