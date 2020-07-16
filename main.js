@@ -1,14 +1,15 @@
-var pens = 0 
-var funds = 0 
-var penCost = 0.25 // initial
-var materials = 1000
-var matCost = 25
-var hireCost = 5 
-var workForce = 0;
-var displaySaleRate = 2;
-var manufacturingStatus = 0;
+let pens = 0 
+let funds = 0 
+let penCost = 0.25 // initial
+let materials = 1000
+let purchaseMatAmt = 1000
+let matCost = 10
+let hireCost = 5 
+let workForce = 0;
+let displaySaleRate = 2;
+let manufacturingStatus = 0;
 
-var saleRate = 2
+let saleRate = 2
 
 function sellPen(number){
 
@@ -46,8 +47,8 @@ function raisePrice(){
 function buyMat(){
     if (matCost > funds) return
     funds -= matCost 
-    materials += 1000
-    matCost += 5
+    materials += purchaseMatAmt;
+    matCost += 2
     document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     document.getElementById("mat").textContent = materials
     document.getElementById("matCost").textContent = matCost
