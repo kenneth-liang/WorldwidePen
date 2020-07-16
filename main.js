@@ -11,8 +11,32 @@ let manufacturingStatus = 0;
 
 let saleRate = 2
 
-function sellPen(number){
+function updateGUI (){
+    // increase pens
+    document.getElementById("pens").textContent = pens;
+    // decrease materials
+    document.getElementById("mat").textContent = materials;
+    // increase funds by price per pen
+    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+    // update pencost 
+    document.getElementById("penprice").innerHTML = penCost.toFixed(2);
+    // incrase materials cost 
+    // debugger
+    document.getElementById("matCost").textContent = matCost;
+}
 
+function updateSales(){
+    //update workforce size
+     document.getElementById("workForce").textContent = workForce;
+     // update hire price
+    document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+}
+
+// function updatePenCost(){
+//     document.getElementById("penprice").innerHTML = penCost.toFixed(2);
+// }
+
+function sellPen(number){
     if (materials <= 0) {
         materials = 0;
         document.getElementById("mat").textContent = 0;
@@ -20,9 +44,7 @@ function sellPen(number){
         pens += number;
         materials -= number;
         funds += penCost;
-        document.getElementById("mat").textContent = materials;
-        document.getElementById("pens").textContent = pens;
-        document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+        updateGUI();
     }
 
     // if we cannot afford any materials to continue play
@@ -35,13 +57,13 @@ function sellPen(number){
 function lowerPrice(){
     if (penCost >= 0.01) {
         penCost -= .01
-        document.getElementById("penprice").innerHTML = penCost.toFixed(2);
+        updateGUI();
     }
 }
 
 function raisePrice(){
     penCost += .01
-    document.getElementById("penprice").innerHTML = penCost.toFixed(2);
+    updateGUI();
 }
 
 function buyMat(){
@@ -49,9 +71,12 @@ function buyMat(){
     funds -= matCost 
     materials += purchaseMatAmt;
     matCost += 2
-    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    document.getElementById("mat").textContent = materials
-    document.getElementById("matCost").textContent = matCost
+    // document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+    // document.getElementById("mat").textContent = materials
+    // document.getElementById("matCost").textContet = matCost
+    // debugger
+    updateGUI();
+    // debugger
 }
 
 function hirePerson(){
@@ -59,16 +84,15 @@ function hirePerson(){
     workForce++
     funds -= hireCost
     hireCost = 5 + Math.pow(1.1, (workForce + 5)); 
-    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    document.getElementById("workForce").textContent = workForce;
-    document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+    // document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
 
+    // document.getElementById("workForce").textContent = workForce;
+    // document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+    updateSales();
 
     // autoclicker 
-    // your employees can sell 2 pens per second 
-    // sellRate = 1000 / (500/workForce)// fix
-    // debugger
-    // saleRate += displaySaleRate;
+    // maybe relocate this
+    // change to sellPen(1) but with faster frequency?
     setInterval(function() { 
         sellPen(saleRate);
     }, 1000)
@@ -88,7 +112,7 @@ function loseGame() {
   document.getElementById("gameStatus").textContent = "Lose";
 }
 
-//need to be enabled by upgrade 
+// need to be enabled by upgrade 
 // automatically buys materials when materials are out
 function toggleManfacturer(){
     if (manufacturingStatus === 1){
