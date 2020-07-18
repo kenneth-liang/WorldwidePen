@@ -1,3 +1,11 @@
+.animation-container{
+    background-image: url("https://piskel-imgstore-b.appspot.com/img/56118f51-c8cf-11ea-bca2-311775629203.gif");
+    background-size: cover;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+
 body {
     /* max-width: 1400px; */
     margin: 0 auto;
