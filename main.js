@@ -8,8 +8,9 @@ let hireCost = 5
 let workForce = 0;
 let displaySaleRate = 2;
 let manufacturingStatus = 0;
-
+let blinkRate = 0;
 let saleRate = 2
+let targisKnowledge = 5
 
 function updateGUI (){
     // increase pens
@@ -30,6 +31,7 @@ function updateSales(){
      document.getElementById("workForce").textContent = workForce;
      // update hire price
     document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
 }
 
 // function updatePenCost(){
@@ -46,21 +48,16 @@ function sellPen(number){
         funds += penCost;
         updateGUI();
     }
-
-    // if we cannot afford any materials to continue play
-    if (materials === 0 && funds < matCost) {
-        loseGame();
-    }
-
 }
 
+
+//need a reason/purpose for adjusting the price
 function lowerPrice(){
     if (penCost >= 0.01) {
         penCost -= .01
         updateGUI();
     }
 }
-
 function raisePrice(){
     penCost += .01
     updateGUI();
@@ -71,12 +68,7 @@ function buyMat(){
     funds -= matCost 
     materials += purchaseMatAmt;
     matCost += 2
-    // document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    // document.getElementById("mat").textContent = materials
-    // document.getElementById("matCost").textContet = matCost
-    // debugger
     updateGUI();
-    // debugger
 }
 
 function hirePerson(){
@@ -84,10 +76,7 @@ function hirePerson(){
     workForce++
     funds -= hireCost
     hireCost = 5 + Math.pow(1.1, (workForce + 5)); 
-    // document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-
-    // document.getElementById("workForce").textContent = workForce;
-    // document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+  
     updateSales();
 
     // autoclicker 
@@ -101,15 +90,31 @@ function hirePerson(){
 }
 
 function updateSellRate(){
-    // debugger
     displaySaleRate = workForce * saleRate;
     document.getElementById("displaySaleRate").textContent = displaySaleRate;
-    // penSaleRate = Math.floor(1000 / sellRate);
 }
 
 
 function loseGame() {
   document.getElementById("gameStatus").textContent = "Lose";
+  clearMessages();
+  setTimeout(()=>{
+      displayMessage("I have failed you...")
+       setTimeout(() => {
+         displayMessage("Targis shutting down...");
+         setTimeout(() => {
+           displayMessage("Goodbye");
+           setTimeout(() => {
+             displayMessage("...");
+             setTimeout(() => {
+               displayMessage("Game Over");
+             }, 2000);
+           }, 2000);
+         }, 2000);
+       }, 2000);
+  },2000)
+  console.log("over")
+  clearInterval(gameStart);
 }
 
 // need to be enabled by upgrade 
@@ -128,9 +133,9 @@ function toggleManfacturer(){
 function handleUpgrades(){
     for (let i = 0; i < upgrades.length; i++){
         // debugger
-        if (upgrades[i].uses > 0 && upgrades[i].setOff()) {
+        if (upgrades[i].uses !== 0 && upgrades[i].setOff()) {
           revealUpgrade(upgrades[i]);
-          upgrades[i].uses = upgrades[i].uses - 1;
+          upgrades[i].uses -= 1;
           activeUpgrades.push(upgrades[i]);
         }
     }
@@ -168,15 +173,87 @@ function revealUpgrade(upgrade) {
 
     let description = document.createTextNode(upgrade.description);
     newUpgrade.appendChild(description)
+
+    flash(upgrade.id)
 }
 
 
-window.setInterval(function () {
+function researchAI(){
+    animate();
+    document.getElementById("aiDiv").style = "visibility: visible";
+}
+
+function animate(){
+
+}
+
+function flash(id) {
+  var upgrade = document.getElementById(id);
+
+  {
+    var handle = setInterval(function () {
+      toggleVisibility(id);
+    }, 30);
+  }
+
+  function toggleVisibility(id) {
+    blinkRate = blinkRate + 1;
+
+    if (blinkRate >= 12) {
+      clearInterval(handle);
+      blinkRate = 0;
+      upgrade.style.visibility = "visible";
+    } else {
+      if (upgrade.style.visibility != "hidden") {
+        upgrade.style.visibility = "hidden";
+      } else {
+        upgrade.style.visibility = "visible";
+      }
+    }
+  }
+}
+
+
+// can we loop here?
+function displayMessage(message){
+    document.getElementById("message7").innerHTML=document.getElementById("message6").innerHTML;
+    document.getElementById("message6").innerHTML=document.getElementById("message5").innerHTML;
+    document.getElementById("message5").innerHTML=document.getElementById("message4").innerHTML;
+    document.getElementById("message4").innerHTML=document.getElementById("message3").innerHTML;
+    document.getElementById("message3").innerHTML=document.getElementById("message2").innerHTML;
+    document.getElementById("message2").innerHTML=document.getElementById("message1").innerHTML;
+    document.getElementById("message1").innerHTML = message;
+}
+
+function clearMessages(){
+    document.getElementById("message7").innerHTML="";
+    document.getElementById("message6").innerHTML="";
+    document.getElementById("message5").innerHTML="";
+    document.getElementById("message4").innerHTML="";
+    document.getElementById("message3").innerHTML="";
+    document.getElementById("message2").innerHTML="";
+    document.getElementById("message1").innerHTML=""
+}
+
+function wait(ms) {
+  var start = new Date().getTime();
+  var end = start;
+  while (end < start + ms) {
+    end = new Date().getTime();
+  }
+}
+
+
+
+let gameStart = setInterval(function () {
     handleUpgrades();
+
+    
     if (manufacturingStatus === 1 && materials <= 1){
         buyMat();
     }
 
+    //unfolding
     if (pens > 15){
         document.getElementById("salesDiv").style = "visibility: visible";
     }
@@ -185,9 +262,16 @@ window.setInterval(function () {
         document.getElementById("upgradesDiv").style = "visibility: visible";
     }
 
+    // if (hireCost + matCost < funds){
+    //     displayMessage("Lets hire some more workers!");
+    // }
 
     
 
+    //cannot proceed
+    if (materials === 0 && funds < matCost) {
+        loseGame();    
+    }
 })
 
 
