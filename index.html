@@ -16,7 +16,6 @@
         <div class="game-controlls">
             
             <div id="topDiv">
-                <!-- messages -->
                 <h1>Pens: <span id=pens>0</span></h1>
             </div>
             <div id="gameDiv">
@@ -29,9 +28,9 @@
                 <div id="businessDiv">
                     <h3> Business </h3>
                     <div>Available Funds: $ <span id="funds">0</span></div>
+                    <div>Price per pen $<span id="penprice">0.25</span></div>
                     <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
                     <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
-                    Price per pen $<span id="penprice">0.25</span>
                 </div>
                 <div id="productionDiv">
                     <div id="materialsDiv">
@@ -61,7 +60,19 @@
                     <div>Cost: $ <span id="hireCost">5.00</span></div>
                 </div>
                 <div id="aiDiv" style="visibility: hidden">
-                    ...
+                    <h3 id="targis" style="visibility: hidden" >Targis</h3>
+                    <!-- messages -->
+                    <div id="targisChat">
+                        <p class="messages">
+                            <span>&nbsp;>&nbsp;</span><span id="message7"></span><br />
+                            <span>&nbsp;>&nbsp;</span><span id="message6"></span><br />
+                            <span>&nbsp;>&nbsp;</span><span id="message5"></span><br />
+                            <span>&nbsp;>&nbsp;</span><span id="message4"></span><br />
+                            <span>&nbsp;>&nbsp;</span><span id="message3"></span><br />
+                            <span>&nbsp;>&nbsp;</span><span id="message2"></span><br />
+                            <span>&nbsp;>&nbsp;</span><span id="message1"></span><br />
+                        </p>
+                    </div>
                 </div>
             </div>
 
