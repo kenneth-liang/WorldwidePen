@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./style.css">
     <title>Worldwide Pen</title>
 </head>
@@ -40,11 +39,11 @@
                         </br>
                         Cost: $ <span id="matCost">10</span>
 
-                        <div id="manufacturer" style="visibility: hidden">
-                            <button id="btnManufacturer" onclick="toggleManfacturer()">
-                                Manufacturing
+                        <div id="autoBuy" style="visibility: hidden">
+                            <button id="btnAutoBuy" onclick="toggleAutoBuy()">
+                                Toggle AutoBuy
                             </button>
-                            <span id="manuStatus">OFF</span>
+                            <span id="buyStatus">OFF</span>
                         </div>
                     </div>
 
@@ -60,18 +59,24 @@
                     <div>Cost: $ <span id="hireCost">5.00</span></div>
                 </div>
                 <div id="aiDiv" style="visibility: hidden">
-                    <h3 id="targis" style="visibility: hidden" >Targis</h3>
+                    <div id="targisHeader" style="visibility: hidden" >
+                        <h3 id="targis" >Targis</h3>
+                        <div id="targisConscious">
+                            <span id="targisAwareness">1</span>% Consciousness
+                        </div>
+                    </div>
                     <!-- messages -->
                     <div id="targisChat">
-                        <p class="messages">
-                            <span>&nbsp;>&nbsp;</span><span id="message7"></span><br />
-                            <span>&nbsp;>&nbsp;</span><span id="message6"></span><br />
-                            <span>&nbsp;>&nbsp;</span><span id="message5"></span><br />
-                            <span>&nbsp;>&nbsp;</span><span id="message4"></span><br />
-                            <span>&nbsp;>&nbsp;</span><span id="message3"></span><br />
-                            <span>&nbsp;>&nbsp;</span><span id="message2"></span><br />
-                            <span>&nbsp;>&nbsp;</span><span id="message1"></span><br />
-                        </p>
+                        <div class="messages">
+                            <div><span>&nbsp;>&nbsp;</span><span id="message8"></span></div>
+                            <div><span>&nbsp;>&nbsp;</span><span id="message7"></span></div>
+                            <div><span>&nbsp;>&nbsp;</span><span id="message6"></span></div>
+                            <div><span>&nbsp;>&nbsp;</span><span id="message5"></span></div>
+                            <div><span>&nbsp;>&nbsp;</span><span id="message4"></span></div>
+                            <div><span>&nbsp;>&nbsp;</span><span id="message3"></span></div>
+                            <div><span>&nbsp;>&nbsp;</span><span id="message2"></span></div>
+                            <div><span>&nbsp;>&nbsp;</span><span id="message1"></span></div>
+                        </div>
                     </div>
                 </div>
             </div>
