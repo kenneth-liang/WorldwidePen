@@ -63,12 +63,18 @@ body {
 }
 
 .upgradeButton{
-    margin: 15px;
+    margin: 5px;
 }
 
 #upgradeList div {
     margin: 5px;
     list-style-type: none;
+}
+
+#targisHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #targisChat {
@@ -79,4 +85,11 @@ body {
     height: 200px;
     border-top: 10px solid dimgray;
     border-radius: 5px;
+}
+
+.messages {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
