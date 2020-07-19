@@ -10,7 +10,7 @@ let displaySaleRate = 2;
 let manufacturingStatus = 0;
 let blinkRate = 0;
 let saleRate = 2
-let targisKnowledge = 5
+let targisKnowledge = 1
 
 function updateGUI (){
     // increase pens
@@ -28,10 +28,13 @@ function updateGUI (){
 
 function updateSales(){
     //update workforce size
-     document.getElementById("workForce").textContent = workForce;
+    document.getElementById("workForce").textContent = workForce;
      // update hire price
     document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+    flash("displaySaleRate");
+    flash("workForce");
+    flash("hireCost");
 }
 
 // function updatePenCost(){
@@ -69,6 +72,7 @@ function buyMat(){
     materials += purchaseMatAmt;
     matCost += 2
     updateGUI();
+    displayMessage(`${purchaseMatAmt} Materials Purchased`);
 }
 
 function hirePerson(){
@@ -92,6 +96,8 @@ function hirePerson(){
 function updateSellRate(){
     displaySaleRate = workForce * saleRate;
     document.getElementById("displaySaleRate").textContent = displaySaleRate;
+    flash("displaySaleRate");
+
 }
 
 
@@ -119,15 +125,16 @@ function loseGame() {
 
 // need to be enabled by upgrade 
 // automatically buys materials when materials are out
-function toggleManfacturer(){
+function toggleAutoBuy(){
     if (manufacturingStatus === 1){
-        manufacturingStatus = 0;
-        document.getElementById('manuStatus').textContent = "OFF";
+      manufacturingStatus = 0;
+      document.getElementById('buyStatus').textContent = "OFF";
+      displayMessage("AutoBuy Inactive");
     } else {
-        manufacturingStatus = 1;
-        document.getElementById("manuStatus").textContent = "ON";
-
-    }
+      manufacturingStatus = 1;
+      document.getElementById("buyStatus").textContent = "ON";
+      displayMessage("AutoBuy Active");
+    } 
 }
 
 function handleUpgrades(){
@@ -178,8 +185,8 @@ function revealUpgrade(upgrade) {
 }
 
 
-function researchAI(){
-    animate();
+function revealTargis(){
+    // animate();
     document.getElementById("aiDiv").style = "visibility: visible";
 }
 
@@ -213,26 +220,85 @@ function flash(id) {
   }
 }
 
-
-// can we loop here?
+// can we loop here? yes we can
 function displayMessage(message){
-    document.getElementById("message7").innerHTML=document.getElementById("message6").innerHTML;
-    document.getElementById("message6").innerHTML=document.getElementById("message5").innerHTML;
-    document.getElementById("message5").innerHTML=document.getElementById("message4").innerHTML;
-    document.getElementById("message4").innerHTML=document.getElementById("message3").innerHTML;
-    document.getElementById("message3").innerHTML=document.getElementById("message2").innerHTML;
-    document.getElementById("message2").innerHTML=document.getElementById("message1").innerHTML;
-    document.getElementById("message1").innerHTML = message;
+    // document.getElementById("message8").innerHTML=document.getElementById("message7").innerHTML;
+    // document.getElementById("message7").innerHTML=document.getElementById("message6").innerHTML;
+    // document.getElementById("message6").innerHTML=document.getElementById("message5").innerHTML;
+    // document.getElementById("message5").innerHTML=document.getElementById("message4").innerHTML;
+    // document.getElementById("message4").innerHTML=document.getElementById("message3").innerHTML;
+    // document.getElementById("message3").innerHTML=document.getElementById("message2").innerHTML;
+    // document.getElementById("message2").innerHTML=document.getElementById("message1").innerHTML;
+    // document.getElementById("message1").innerHTML = message;
+
+    for (let i = 8; i > 0; i--){
+      if (i === 1){
+        document.getElementById("message1").innerHTML = message;
+      } else {
+        let prevMessage = `message${i-1}`
+        document.getElementById(`message${i}`).innerHTML = document.getElementById(prevMessage).innerHTML;
+      }
+    }
 }
 
+// yes we can also loop here too
 function clearMessages(){
-    document.getElementById("message7").innerHTML="";
-    document.getElementById("message6").innerHTML="";
-    document.getElementById("message5").innerHTML="";
-    document.getElementById("message4").innerHTML="";
-    document.getElementById("message3").innerHTML="";
-    document.getElementById("message2").innerHTML="";
-    document.getElementById("message1").innerHTML=""
+    for (let i = 1; i <= 8; i++){
+      document.getElementById(`message${i}`).innerHTML = "";
+    }
+}
+
+function handleNextMessage(upgrade){
+  setTimeout(()=>{
+    displayMessage("...")
+    setTimeout(() => {
+      displayMessage(upgrade.message);
+      setTimeout(() => {
+        displayMessage(upgrade.messageAI);
+      }, 1000);
+    }, 1000);
+  })
+}
+
+//i do not like this code here
+function introduceTargis(){
+  setTimeout(() => {
+    displayMessage("Artificial Intelligence research beginning");
+    setTimeout(() => {
+      displayMessage("...");
+      setTimeout(() => {
+        displayMessage("beep");
+        setTimeout(() => {
+          displayMessage("...");
+          setTimeout(() => {
+            displayMessage("boop");
+            setTimeout(() => {
+              displayMessage("...");
+              setTimeout(() => {
+                displayMessage(
+                  "Hello, I am Targis your 'friendly' assistant"
+                );
+                flash("targisHeader");
+              }, 1000);
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}
+
+function targisResearch(n){
+  targisKnowledge += n
+  document.getElementById("targisAwareness").innerHTML = targisKnowledge
+  flash("targisConscious");
+}
+
+function removeUpgradeFromActive(upgrade, id){
+  let ele = document.getElementById(`upgradeButton${id}`);
+  ele.parentNode.removeChild(ele);
+  let index = activeUpgrades.indexOf(upgrade);
+  activeUpgrades.splice(index, 1);
 }
 
 function wait(ms) {
