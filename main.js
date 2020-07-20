@@ -23,9 +23,7 @@ function updateSales(){
     flash("hireCost");
 }
 
-// function updatePenCost(){
-//     document.getElementById("penprice").innerHTML = penCost.toFixed(2);
-// }
+
 
 function sellPen(number){
     if (materials <= 0) {
@@ -56,7 +54,7 @@ function buyMat(){
     if (matCost > funds) return
     funds -= matCost 
     materials += purchaseMatAmt;
-    matCost += 2
+    matCost += 2 
     updateGUI();
     displayMessage(`${purchaseMatAmt} Materials Purchased`);
 }
@@ -69,18 +67,13 @@ function hirePerson(){
   
     updateSales();
 
-    // autoclicker 
-    // maybe relocate this
-    // change to sellPen(1) but with faster frequency?
-    // setInterval(function() { 
-    //     sellPen(displaySaleRate);
-    // }, 1000)
     autoClick();
 
     updateSellRate();
 }
 
 function autoClick(){
+  //increment based on the rate displayed
     setInterval(function () {
       sellPen(displaySaleRate);
     }, 1000);

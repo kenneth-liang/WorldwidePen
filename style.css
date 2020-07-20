@@ -1,13 +1,24 @@
-.animation-container{
+.animation-container {
+    width: 300;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+}
+
+.animation {
     background-image: url("https://piskel-imgstore-b.appspot.com/img/56118f51-c8cf-11ea-bca2-311775629203.gif");
     background-size: cover;
     border: 1px solid transparent;
     border-radius: 3px;
+    height: 100%;
+    width: 100%;
 }
 
 body {
     margin: 0 auto;
-    background: lightgrey;
+    background: #1f1b35;
     align-content: center;
     height: 100%;
     font-family: 'Indie Flower', cursive;
@@ -40,7 +51,7 @@ h3 {
 }
 
 .details {
-    width: 80%;
+    width: 50%;
     height: 25px;
     padding: 3px;
     margin: 0 25px;
@@ -82,22 +93,13 @@ button {
 
 .game-container{
     max-width: 1000px;
-    max-height: 1000px;
     background: whitesmoke;
     display: flex;
     flex-direction: column;
     margin: auto;
     border-radius: 3px;
     margin-top: 5px;
-}
-
-.animation-container {
-    border: 1px solid black;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 25px;
+    margin-bottom: 5px;
 }
 
 .contentContainer {
@@ -120,13 +122,13 @@ button {
 
 #middleDiv{
     float:left;
-    width: 365px;
+    width: 375px;
     margin: 0px 5px;
 }
 
 #rightDiv{
     float:left;
-    width: 325px
+    width: 300px
 }
 
 #pens {
