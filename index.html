@@ -3,47 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <script src="https://kit.fontawesome.com/555ec7bf31.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Orbitron&family=Press+Start+2P&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
     <title>Worldwide Pen</title>
 </head>
 <body>
     <div class="game-container">
+        <header>
+            <h1>Worldwide Pen</h1>
+            <div class="links">
+                <a href="https://github.com/kenneth-liang"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/insightfulkennethliang/"><i class="fab fa-linkedin"></i></a>
+                <!-- <span>Portfolio</span> -->
+            </div>
+        </header>
+        <div class="details">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo suscipit nesciunt, placeat qui assumenda tenetur veniam dicta eos consectetur non officiis ducimus repellat vero nisi, dolorem eveniet doloribus quasi dolore?
+        </div>
         <div class="animation-container">
             <!-- <div>Cool thing here</div> -->
         </div>
+     
         <div class="game-controlls">
-            
             <div id="topDiv">
-                <h1>Pens: <span id=pens>0</span></h1>
+                <h2>Pens: <span id=pens>0</span></h2>
+                <div class="gameStatus">
+                    <div>Game Status: <span id="gameStatus">In Progress</span></div>
+                    <button onclick=reset()>Restart Game</button>
+                </div>
             </div>
-            <div id="gameDiv">
-                <div>Game Status: <span id="gameStatus">Progress</span></div>
-                <button onclick="sellPen(1)">Sell Pen</button>
+            <div id="gameDiv" class="contentContainer" >      
+                <span>Click Here!</span>
+                <button class="clicker"onclick="sellPen(1)">Sell Pen</button>
             </div>
             </br>
 
             <div id="leftDiv">
-                <div id="businessDiv">
+                <div id="businessDiv" class="contentContainer" style="visibility: hidden" >
                     <h3> Business </h3>
-                    <div>Available Funds: $ <span id="funds">0</span></div>
-                    <div>Price per pen $<span id="penprice">0.25</span></div>
-                    <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
-                    <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
+                    <div class="subcontent">
+                        <div>Available Funds: $ <span id="funds">0</span></div>
+                        <div>Price per pen $<span id="penprice">0.25</span></div>
+                        <br>
+                        <div id="penFeatures">Pen Features:
+                            <span id="penFeatureDescription">None</span>
+                        </div>
+                    </div>
+                    <!-- <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
+                    <button id="btnRaisePrice" onclick="raisePrice()">increase</button> -->
                 </div>
-                <div id="productionDiv">
+                <div id="productionDiv" class="contentContainer" style="visibility: hidden">
                     <div id="materialsDiv">
                         <h3>Materials</h3>
-                        <button id="btnBuyMat" onclick='buyMat()'>Materials</button>
-                        <span id="mat">1000</span>
-                        </br>
-                        Cost: $ <span id="matCost">10</span>
-
-                        <div id="autoBuy" style="visibility: hidden">
-                            <button id="btnAutoBuy" onclick="toggleAutoBuy()">
-                                Toggle AutoBuy
-                            </button>
-                            <span id="buyStatus">OFF</span>
+                        <div class="subcontent">
+                            <button id="btnBuyMat" onclick='buyMat()'>Buy Materials</button>
+                            <span id="mat">1000</span>
+                            </br>
+                            <div>Cost: $ <span id="matCost">10</span></div>
+                            
+    
+                            <div id="autoBuy" style="visibility: hidden">
+                                <button id="btnAutoBuy" onclick="toggleAutoBuy()">
+                                    Toggle AutoBuy
+                                </button>
+                                <span id="buyStatus">OFF</span>
+                            </div>
                         </div>
                     </div>
 
@@ -51,14 +79,16 @@
             </div>
 
             <div id="middleDiv">
-                <div id="salesDiv" style="visibility: hidden">
+                <div class="contentContainer" id="salesDiv" style="visibility: hidden">
                     <h3>Sales Team</h3>
-                    <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div>
-                    <div>Workforce: <span id="workForce">0</span> employees</div>
-                    <button onclick="hirePerson()">Hire</button>
-                    <div>Cost: $ <span id="hireCost">5.00</span></div>
+                    <div class="subcontent">
+                        <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div>
+                        <div>Workforce: <span id="workForce">0</span> employees</div>
+                        <button onclick="hirePerson()">Hire</button>
+                        <div>Cost: $ <span id="hireCost">5.00</span></div>
+                    </div>
                 </div>
-                <div id="aiDiv" style="visibility: hidden">
+                <div class="contentContainer" id="aiDiv" style="visibility: hidden">
                     <div id="targisHeader" style="visibility: hidden" >
                         <h3 id="targis" >Targis</h3>
                         <div id="targisConscious">
@@ -78,6 +108,9 @@
                             <div><span>&nbsp;>&nbsp;</span><span id="message1"></span></div>
                         </div>
                     </div>
+                    <div id="restartGame" style="visibility: hidden">
+                        <button class="btnRestart" onclick="reset()">Restart Game</button>
+                    </div>
                 </div>
             </div>
 
@@ -85,18 +118,22 @@
                 <div id="globalStatus">
 
                 </div>
-                <div id="upgradesDiv" style="visibility: hidden">
+                <div class="contentContainer" id="upgradesDiv" style="visibility: hidden">
                     <h3>Upgrades</h3>
-                    <div id="upgradeList">
-                        <!-- display upgrades here -->
+                    <div class="subcontent">
+                        <div id="upgradeList">
+                            <!-- display upgrades here -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="main.js"></script>
+<script src="variables.js"></script>
 <script src="upgrades.js"></script>
+<script src="gamestatus.js"></script>
+<script src="main.js"></script>
 </html>
 
 
