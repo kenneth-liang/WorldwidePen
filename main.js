@@ -1,17 +1,3 @@
-let pens = 0 
-let funds = 0 
-let penCost = 0.25 // initial
-let materials = 1000
-let purchaseMatAmt = 1000
-let matCost = 10
-let hireCost = 5 
-let workForce = 0;
-let displaySaleRate = 2;
-let manufacturingStatus = 0;
-let blinkRate = 0;
-let saleRate = 2
-let targisKnowledge = 1
-
 function updateGUI (){
     // increase pens
     document.getElementById("pens").textContent = pens;
@@ -86,11 +72,18 @@ function hirePerson(){
     // autoclicker 
     // maybe relocate this
     // change to sellPen(1) but with faster frequency?
-    setInterval(function() { 
-        sellPen(saleRate);
-    }, 1000)
+    // setInterval(function() { 
+    //     sellPen(displaySaleRate);
+    // }, 1000)
+    autoClick();
 
     updateSellRate();
+}
+
+function autoClick(){
+    setInterval(function () {
+      sellPen(displaySaleRate);
+    }, 1000);
 }
 
 function updateSellRate(){
@@ -114,11 +107,14 @@ function loseGame() {
              displayMessage("...");
              setTimeout(() => {
                displayMessage("Game Over");
-             }, 2000);
-           }, 2000);
-         }, 2000);
-       }, 2000);
-  },2000)
+               document.getElementById("restartGame").style =
+                 "visibility: visible";
+             }, 1000);
+           }, 1000);
+         }, 1000);
+       }, 1000);
+  },1000)
+
   console.log("over")
   clearInterval(gameStart);
 }
@@ -140,7 +136,7 @@ function toggleAutoBuy(){
 function handleUpgrades(){
     for (let i = 0; i < upgrades.length; i++){
         // debugger
-        if (upgrades[i].uses !== 0 && upgrades[i].setOff()) {
+        if (upgrades[i].uses !== 0 && upgrades[i].trigger()) {
           revealUpgrade(upgrades[i]);
           upgrades[i].uses -= 1;
           activeUpgrades.push(upgrades[i]);
@@ -184,15 +180,22 @@ function revealUpgrade(upgrade) {
     flash(upgrade.id)
 }
 
+function addPenFeature(description){
+  document.getElementById("penFeatureDescription").innerHTML = description;
+  flash("penFeatureDescription");
+  flash("penprice");
+}
+
 
 function revealTargis(){
     // animate();
+    targisAwake = true;
     document.getElementById("aiDiv").style = "visibility: visible";
 }
 
-function animate(){
-
-}
+// function animate(){
+    // annimates character 
+// }
 
 function flash(id) {
   var upgrade = document.getElementById(id);
@@ -301,15 +304,13 @@ function removeUpgradeFromActive(upgrade, id){
   activeUpgrades.splice(index, 1);
 }
 
-function wait(ms) {
-  var start = new Date().getTime();
-  var end = start;
-  while (end < start + ms) {
-    end = new Date().getTime();
-  }
+var saveTimer = 0;
+
+
+if (localStorage.getItem("gameSaved") !== null) {
+  loadGame();
+  console.log("loaded")
 }
-
-
 
 let gameStart = setInterval(function () {
     handleUpgrades();
@@ -319,8 +320,14 @@ let gameStart = setInterval(function () {
         buyMat();
     }
 
+    if (pens > 1){
+      document.getElementById("businessDiv").style = "visibility: visible";
+      document.getElementById("productionDiv").style = "visibility: visible";
+    }
+
     //unfolding
     if (pens > 15){
+        document.getElementById("salesDiv").style = "visibility: visible";
         document.getElementById("salesDiv").style = "visibility: visible";
     }
 
@@ -328,16 +335,30 @@ let gameStart = setInterval(function () {
         document.getElementById("upgradesDiv").style = "visibility: visible";
     }
 
+    //targis assist
+    // if (materials === 0 && funds >= matCost ) {
+    //   displayMessage("You should buy more materials")
+    // }
+
     // if (hireCost + matCost < funds){
     //     displayMessage("Lets hire some more workers!");
     // }
 
-    
-
+  
     //cannot proceed
     if (materials === 0 && funds < matCost) {
         loseGame();    
     }
-})
+
+    if (targisAwake === true ){
+      revealTargis();
+    }
+
+    saveTimer++;
+    if (saveTimer >= 500){
+      saveGame();
+      saveTimer = 0;
+    }
+}, 100)
 
 
