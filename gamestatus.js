@@ -32,7 +32,6 @@ function saveGame(){
     localStorage.setItem("savedUpgradesActive", JSON.stringify(savedUpgradesActive));
     // console.log("hi, game saved")
     displayMessage("Game Saved!");
-
 }
 
 
@@ -78,7 +77,6 @@ function loadGame(){
     targisKnowledge = game.targisKnowledge
     targisAwake = game.targisAwake
 
-    
     for (let i = 0; i < upgrades.length; i++){
         upgrades[i].uses = loadUpgradeUses[i];
     }
