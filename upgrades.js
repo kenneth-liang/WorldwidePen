@@ -5,12 +5,12 @@ let upgrade1 = {
   id: "upgradeButton1",
   title: "Company Satchels ",
   priceTag: "$10.00",
-  description: "Increase sales capabilities by 25%",
+  description: "Increase sales by 25%",
   message: "Equiping employees with Batagonia Bags ",
   messageAI: "That's awesome! I wish I could wear clothes",
   uses: 1,
   cost: function () { return funds >= 10; }, 
-  setOff: function () { return workForce >= 2; },
+  trigger: function () { return workForce >= 2; },
   effect: function () {
     funds -= 10;
     saleRate = Math.ceil(saleRate * 1.25);
@@ -41,7 +41,7 @@ let upgrade2 = {
   messageAI: "Now that is good speed, look at them go",
   uses: 1,
   cost: function () {return funds >= 20},
-  setOff: function () {return workForce >= 10},
+  trigger: function () {return workForce >= 10},
   effect: function () {
     funds -= 20;
     saleRate = Math.ceil(saleRate * 1.5);
@@ -61,7 +61,7 @@ let upgrade3 = {
   messageAI: "Do we have insurance yet?",
   uses: 1,
   cost: function () {return funds >= 35;},
-  setOff: function () {return workForce >= 15; },
+  trigger: function () {return workForce >= 15; },
   effect: function () {
     funds -= 35;
     saleRate = Math.ceil(saleRate * 1.75);
@@ -81,7 +81,7 @@ let upgrade4 = {
   messageAI: "Wait, is this legal?",
   uses: 1,
   cost: function () {return funds >= 125;},
-  setOff: function () {return workForce >= 20;},
+  trigger: function () {return workForce >= 20;},
   effect: function () {
     funds -= 100;
     saleRate = Math.ceil(saleRate * 2.00);
@@ -102,9 +102,9 @@ let upgrade5 = {
   messageAI: "I can handle buying the materials :)",
   uses: 1,
   cost: function () { return funds >= 10; },
-  setOff: function () { return materials <= 750; },
+  trigger: function () { return materials <= 750; },
   effect: function () {
-    funds -= 20;
+    funds -= 10;
     document.getElementById("autoBuy").style = "visibility: visible";
     handleNextMessage(upgrade5);
     targisResearch(2);
@@ -122,7 +122,7 @@ let upgrade6 = {
   messageAI: "Just read Bargaining for Dummies in 0.0000001 seconds",
   uses: 1,
   cost: function () { return funds >= 20; },
-  setOff: function () { return pens >= 1000; },
+  trigger: function () { return pens >= 1000; },
   effect: function () {
     funds -= 25;
     purchaseMatAmt *= 1.50;
@@ -142,7 +142,7 @@ let upgrade7 = {
   messageAI: "The locals are happy you employed them. You are a good human",
   uses: 1,
   cost: function () { return funds >= 200; },
-  setOff: function () { return pens >= 1000; },
+  trigger: function () { return pens >= 1000; },
   effect: function () {
     funds -= 200;
     purchaseMatAmt *= 1.80;
@@ -162,7 +162,7 @@ let upgrade10 = {
   messageAI: "Folks don't seem that happy about this",
   uses: 1,
   cost: function () { return funds >= 1000; }, 
-  setOff: function () { return pens >= 15000; },
+  trigger: function () { return pens >= 15000; },
   effect: function () {
     funds -= 1000;
     matCost *= 0.5;
@@ -180,7 +180,7 @@ let upgrade15 = {
   description: "If you dare",
   uses: 1,
   cost: function () { return funds >= 5; }, 
-  setOff: function () { return workForce >= 1; },
+  trigger: function () { return workForce >= 1; },
   effect: function () {
     funds -= 5;
     clearMessages();
@@ -202,7 +202,7 @@ let upgrade16 = {
   messageAI: "Beep...Boop... I know statistics",
   uses: 1,
   cost: function () { return funds >= 250; },
-  setOff: function () { return targisKnowledge >= 5 },
+  trigger: function () { return targisKnowledge >= 5 },
   effect: function () {
     funds -= 250;
     targisResearch(10);
@@ -213,11 +213,151 @@ let upgrade16 = {
 };
 upgrades.push(upgrade16);
 
+let upgrade20 = {
+  id: "upgradeButton20",
+  title: "Upgrade Pen Feature ",
+  priceTag: "$25.00",
+  description: "Multi Colored",
+  message: "Selling at $0.35 per pen",
+  messageAI: "This pen looks much better",
+  uses: 1,
+  cost: function () { return funds >= 25; },
+  trigger: function () { return pens >= 500; },
+  effect: function () {
+    funds -= 25;
+    penCost += 0.10
+    addPenFeature(upgrade20.description);
+    handleNextMessage(upgrade20);
+    removeUpgradeFromActive(upgrade20, 20);
+  },
+};
+
+upgrades.push(upgrade20);
+
+let upgrade21 = {
+  id: "upgradeButton21",
+  title: "Upgrade Pen Feature ",
+  priceTag: "$250.00",
+  description: "Soft Comfort Grip",
+  message: "Selling at $0.45 per pen",
+  messageAI: "If only I had hands, I could hold this pen.",
+  uses: 1,
+  cost: function () { return funds >= 250; },
+  trigger: function () { return pens >= 5000; },
+  effect: function () {
+    funds -= 250;
+    penCost += 0.10
+    addPenFeature(upgrade21.description);
+    handleNextMessage(upgrade21);
+    removeUpgradeFromActive(upgrade21, 21);
+  },
+};
+upgrades.push(upgrade21);
+
+let upgrade22 = {
+  id: "upgradeButton22",
+  title: "Upgrade Pen Feature ",
+  priceTag: "$750.00",
+  description: "Laser Pointer Mount",
+  message: "Selling at $0.75 per pen",
+  messageAI: "Careful around these eyes",
+  uses: 1,
+  cost: function () { return funds >= 750; },
+  trigger: function () { return pens >= 5000; },
+  effect: function () {
+    funds -= 750;
+    penCost += 0.30;
+    addPenFeature(upgrade22.description);
+    handleNextMessage(upgrade22);
+    removeUpgradeFromActive(upgrade22, 22);
+  },
+};
+upgrades.push(upgrade22);
+
+let upgrade23 = {
+  id: "upgradeButton23",
+  title: "Upgrade Pen Feature ",
+  priceTag: "$1000.00",
+  description: "Solar Panel",
+  message: "Selling at $0.85 per pen",
+  messageAI: "Unlimited power!!",
+  uses: 1,
+  cost: function () { return funds >= 1000; },
+  trigger: function () { return pens >= 7000; },
+  effect: function () {
+    funds -= 1000;
+    penCost += 0.10;
+    addPenFeature(upgrade23.description);
+    handleNextMessage(upgrade23);
+    removeUpgradeFromActive(upgrade23, 23);
+  },
+};
+upgrades.push(upgrade23);
+
+let upgrade24 = {
+  id: "upgradeButton24",
+  title: "Upgrade Pen Feature ",
+  priceTag: "$3000.00",
+  description: "Dark Matter Ink",
+  message: "Selling at $1.00 per pen",
+  messageAI: "Unable to compute Dark Matter",
+  uses: 1,
+  cost: function () {
+    return funds >= 3000;
+  },
+  trigger: function () {
+    return pens >= 9000;
+  },
+  effect: function () {
+    funds -= 3000;
+    penCost = 1;
+    addPenFeature(upgrade24.description);
+    handleNextMessage(upgrade24);
+    removeUpgradeFromActive(upgrade24, 24);
+  },
+};
+upgrades.push(upgrade24);
 
 
+let upgrade31 = {
+  id: "upgradeButton31",
+  title: "Lease Office Space ",
+  priceTag: "$30,000",
+  description: "Increase Workforce Cap 50%",
+  message: "More Employees can be hired ",
+  messageAI: "I am so proud of you! Whats next?",
+  uses: 1,
+  cost: function () { return funds >= 30000; },
+  trigger: function () { return workForce >= 20; },
+  effect: function () {
+    funds -= 30000;
+    handleNextMessage(upgrade31);
+    removeUpgradeFromActive(upgrade31, 31);
+  },
+};
+upgrades.push(upgrade31);
 
-//more upgrades ALOT 
+let upgrade50 = {
+  id: "upgradeButton50",
+  title: "Upgrade Pen Feature ",
+  priceTag: "$1,000,000.00",
+  description: "Market Takeover",
+  message: "Pen Market Conquered",
+  messageAI: "I am so proud of you! Whats next?",
+  uses: 1,
+  cost: function () { return funds >= 1000000; },
+  trigger: function () { return pens >= 9000; },
+  effect: function () {
+    funds -= 1000000;
+    
+    handleNextMessage(upgrade50);
+    removeUpgradeFromActive(upgrade50, 50);
+  },
+};
+upgrades.push(upgrade50);
 
+
+// more upgrades  
 
 
 
