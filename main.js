@@ -1,21 +1,14 @@
 function updateGUI (){
-    // increase pens
     document.getElementById("pens").textContent = pens;
-    // decrease materials
     document.getElementById("mat").textContent = materials;
-    // increase funds by price per pen
     document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    // update pencost 
     document.getElementById("penprice").innerHTML = penCost.toFixed(2);
-    // incrase materials cost 
-    // debugger
+
     document.getElementById("matCost").textContent = matCost;
 }
 
 function updateSales(){
-    //update workforce size
     document.getElementById("workForce").textContent = workForce;
-     // update hire price
     document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     flash("displaySaleRate");
@@ -73,7 +66,6 @@ function hirePerson(){
 }
 
 function autoClick(){
-  //increment based on the rate displayed
     setInterval(function () {
       sellPen(displaySaleRate);
     }, 1000);
@@ -112,8 +104,6 @@ function loseGame() {
   clearInterval(gameStart);
 }
 
-// need to be enabled by upgrade 
-// automatically buys materials when materials are out
 function toggleAutoBuy(){
     if (manufacturingStatus === 1){
       manufacturingStatus = 0;
@@ -128,7 +118,6 @@ function toggleAutoBuy(){
 
 function handleUpgrades(){
     for (let i = 0; i < upgrades.length; i++){
-        // debugger
         if (upgrades[i].uses !== 0 && upgrades[i].trigger()) {
           revealUpgrade(upgrades[i]);
           upgrades[i].uses -= 1;
@@ -181,7 +170,6 @@ function addPenFeature(description){
 
 
 function revealTargis(){
-    // animate();
     targisAwake = true;
     document.getElementById("aiDiv").style = "visibility: visible";
 }
@@ -216,17 +204,7 @@ function flash(id) {
   }
 }
 
-// can we loop here? yes we can
 function displayMessage(message){
-    // document.getElementById("message8").innerHTML=document.getElementById("message7").innerHTML;
-    // document.getElementById("message7").innerHTML=document.getElementById("message6").innerHTML;
-    // document.getElementById("message6").innerHTML=document.getElementById("message5").innerHTML;
-    // document.getElementById("message5").innerHTML=document.getElementById("message4").innerHTML;
-    // document.getElementById("message4").innerHTML=document.getElementById("message3").innerHTML;
-    // document.getElementById("message3").innerHTML=document.getElementById("message2").innerHTML;
-    // document.getElementById("message2").innerHTML=document.getElementById("message1").innerHTML;
-    // document.getElementById("message1").innerHTML = message;
-
     for (let i = 8; i > 0; i--){
       if (i === 1){
         document.getElementById("message1").innerHTML = message;
@@ -237,7 +215,6 @@ function displayMessage(message){
     }
 }
 
-// yes we can also loop here too
 function clearMessages(){
     for (let i = 1; i <= 8; i++){
       document.getElementById(`message${i}`).innerHTML = "";
@@ -256,7 +233,6 @@ function handleNextMessage(upgrade){
   })
 }
 
-//i do not like this code here
 function introduceTargis(){
   setTimeout(() => {
     displayMessage("Artificial Intelligence research beginning");
