@@ -1,6 +1,6 @@
 let pens = 0;
 let funds = 0;
-let penCost = 0.25; // initial
+let penCost = 0.25; 
 let materials = 1000;
 let purchaseMatAmt = 1000;
 let matCost = 4;
