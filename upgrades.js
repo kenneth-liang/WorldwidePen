@@ -16,18 +16,8 @@ let upgrade1 = {
     saleRate = Math.ceil(saleRate * 1.25);
     updateSellRate();
     handleNextMessage(upgrade1);
-    // setTimeout(()=> {
-    //   displayMessage(upgrade1.message)
-    //    setTimeout(() => {
-    //      displayMessage(upgrade1.messageAI);
-    //    }, 2000);
-    // },1000);
+
     removeUpgradeFromActive(upgrade1, 1);
-    //upon clicking it remove it from the list
-    // let ele = document.getElementById("upgradeButton1");
-    // ele.parentNode.removeChild(ele);
-    // let index = activeUpgrades.indexOf(upgrade1);
-    // activeUpgrades.splice(index, 1);
   },
 };
 upgrades.push(upgrade1)
@@ -355,9 +345,6 @@ let upgrade50 = {
   },
 };
 upgrades.push(upgrade50);
-
-
-// more upgrades  
 
 
 
