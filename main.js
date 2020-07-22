@@ -287,13 +287,13 @@ let gameStart = setInterval(function () {
         buyMat();
     }
 
-    if (pens > 1){
+    if (pens >= 1){
       document.getElementById("businessDiv").style = "visibility: visible";
       document.getElementById("productionDiv").style = "visibility: visible";
     }
 
     //unfolding
-    if (pens > 15){
+    if (pens >= 4){
         document.getElementById("salesDiv").style = "visibility: visible";
         document.getElementById("salesDiv").style = "visibility: visible";
     }
@@ -327,5 +327,7 @@ let gameStart = setInterval(function () {
       saveTimer = 0;
     }
 }, 100)
+
+
 
 
