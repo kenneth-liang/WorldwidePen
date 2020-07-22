@@ -15,10 +15,19 @@
     <div class="game-container">
         <header>
             <h1>Worldwide Pen</h1>
-            <div class="details">
+            <!-- <div class="details">
                 Welcome! With a click of a button you can start your journey in selling pens. As you sell more and more pens, the
                 story will unfold in front of you. Accidently close the game? Fear not, your progress will be saved
                 automtically by your "friendly" helper. Tip: Upgrade your pen to sell at an higher rate.
+            </div> -->
+            <button id="myBtn">How To Play</button>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Welcome! With a click of a button you can start your journey in selling pens. As you sell more and more pens, the
+                    story will unfold in front of you. Accidently close the game? Fear not, your progress will be saved
+                    automtically by your "friendly" helper. Tip: Upgrade your pen to sell at an higher rate.</p>
+                </div>
             </div>
             <div class="links">
                 <a href="https://github.com/kenneth-liang"><i class="fab fa-github"></i></a>
@@ -32,7 +41,7 @@
             </div>
         </div>
      
-        <div class="game-controlls">
+        <div class="game-controls">
             <div id="topDiv">
                 <h2>Pens: <span id=pens>0</span></h2>
                 <div class="gameStatus">
@@ -134,6 +143,7 @@
         </div>
     </div>
 </body>
+<script src="modal.js"></script>
 <script src="variables.js"></script>
 <script src="upgrades.js"></script>
 <script src="gamestatus.js"></script>
