@@ -30,8 +30,6 @@ function sellPen(number){
     }
 }
 
-
-//need a reason/purpose for adjusting the price
 function lowerPrice(){
     if (penCost >= 0.01) {
         penCost -= .01

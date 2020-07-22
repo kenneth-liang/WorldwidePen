@@ -16,7 +16,6 @@ let upgrade1 = {
     saleRate = Math.ceil(saleRate * 1.25);
     updateSellRate();
     handleNextMessage(upgrade1);
-
     removeUpgradeFromActive(upgrade1, 1);
   },
 };
@@ -346,5 +345,5 @@ let upgrade50 = {
 };
 upgrades.push(upgrade50);
 
-
+// more upgrades 
 
