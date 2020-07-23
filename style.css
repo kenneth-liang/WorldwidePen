@@ -180,6 +180,33 @@ button {
     font-family: 'Press Start 2P', cursive;
 }
 
+.instructions1 {
+    display: flex;
+    margin: 10px;
+    border-bottom: 1px solid lightgray;
+    height: 200px;
+    align-items: center;
+}
+#circle{
+
+    border: 5px solid red;
+    padding: 20px;
+    border-radius: 50%;
+    height: fit-content;
+}
+
+#mouse-image{
+    height: 150px;
+    width: 150px;
+    background: url("https://cdn0.iconfinder.com/data/icons/social-media-2219/50/48-512.png") no-repeat;
+    background-size: contain;
+    margin: 10px;
+}
+
+#stepone{
+    /* float:right; */
+}
+
 
 
 .modal {
@@ -218,3 +245,4 @@ button {
   text-decoration: none;
   cursor: pointer;
 }
+
