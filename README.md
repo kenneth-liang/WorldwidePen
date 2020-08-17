@@ -7,6 +7,9 @@
 * HTML
 * CSS
 
+![gameprev](https://user-images.githubusercontent.com/59374267/90361148-54811400-e012-11ea-9f5f-b01afcd531c7.gif)
+
+
 ## Background and Overview
 Worldwide Pen is a easy to play incremental/clicker game. You start out as a door to door salesman of handmade pens. As you sell more and more pens, options begin to unfold in front of you as you seek to control the market. You can hire a salesperson(s) (to do the selling for you), strategize your business model to generate more revenue, improve your public image by donating to local organizations, and even get your very own AI robot all with just a click. 
 
