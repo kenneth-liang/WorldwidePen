@@ -1,6 +1,6 @@
 # Worldwide Pen
 
-[Live Link](https://kenneth-liang.github.io/WorldwidePen/)
+[Click Here To Play](https://kenneth-liang.github.io/WorldwidePen/)
 
 ## Technologies
 * JavaScript
@@ -14,6 +14,10 @@ As you eventually work up to be the CEO of a multi billion dollar corporation, y
 
 ## Code Snips
 * Because Game Status is saved to localStorage, users can refresh/revisit the page without losing their progress.
+
+![Game Load](https://user-images.githubusercontent.com/59374267/90359964-20f0ba80-e00f-11ea-805f-8cd5b1b2dc2f.png)
+
+
 ```javascript
      
     var saveTimer = 0;
