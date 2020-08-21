@@ -8,8 +8,8 @@
 }
 
 .animation {
-    background-image: url("https://piskel-imgstore-b.appspot.com/img/56118f51-c8cf-11ea-bca2-311775629203.gif");
-    background-size: cover;
+    /* background-image: url("https://piskel-imgstore-b.appspot.com/img/56118f51-c8cf-11ea-bca2-311775629203.gif"); */
+    /* background-size: cover; */
     border: 1px solid transparent;
     border-radius: 3px;
     height: 100%;
@@ -245,4 +245,17 @@ button {
   text-decoration: none;
   cursor: pointer;
 }
+
+
+
+/* animation */
+
+/* .character{
+    width: 948px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+} */
 
