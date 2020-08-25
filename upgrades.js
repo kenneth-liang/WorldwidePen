@@ -170,12 +170,21 @@ let upgrade15 = {
   uses: 1,
   cost: function () { return funds >= 5; }, 
   trigger: function () { return workForce >= 1; },
+  messageArray: [
+    "AI research initializing",
+    "beep",
+    "boop",
+    "Hello, I am",
+    "Targis",
+    "your 'friendly' assistant"
+  ],
   effect: function () {
     funds -= 5;
     clearMessages();
     revealTargis();
     flash("targisChat");
-    introduceTargis(); 
+    // introduceTargis(messageArray); 
+    introduceTargis(upgrade15.messageArray);
     removeUpgradeFromActive(upgrade15, 15);
   },
 };
