@@ -1,73 +1,106 @@
-function updateGUI (){
-    document.getElementById("pens").textContent = pens;
-    document.getElementById("mat").textContent = materials;
-    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    document.getElementById("penprice").innerHTML = penCost.toFixed(2);
-
-    document.getElementById("matCost").textContent = matCost;
-}
-
-function updateSales(){
-    document.getElementById("workForce").textContent = workForce;
-    document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    flash("displaySaleRate");
-    flash("workForce");
-    flash("hireCost");
-}
-
-
-
-function sellPen(number){
-    if (materials <= 0) {
-        materials = 0;
-        document.getElementById("mat").textContent = 0;
-    } else {
-        pens += number;
-        materials -= number;
-        funds += penCost;
-        updateGUI();
+function penClick(number){
+  if (materials >= 1) {
+    if (number > materials){
+      number = materials 
     }
+    pens += number 
+    unsoldPens += number
+    materials -= number 
+    // unusedPens += number 
+
+    document.getElementById("pens").innerHTML = Math.ceil(pens).toLocaleString();
+    document.getElementById("materials").innerHTML = Math.floor(materials).toLocaleString();
+    document.getElementById("unsoldPens").innerHTML = Math.floor(unsoldPens).toLocaleString();
+  }
+}
+
+
+
+function sellPens(number){
+  if (unsoldPens > 0){
+    if (number > unsoldPens){
+      transaction = Math.floor((unsoldPens * margin)*1000)/1000;   
+      funds = Math.floor((funds + transaction) * 100)/100;
+      income += transaction;
+      pensSold += unsoldPens
+      unsoldPens = 0
+    } else {
+      transaction = Math.floor(number * margin * 1000) / 1000;
+      funds = Math.floor((funds + transaction) * 100) / 100;
+      income += transaction
+      pensSold += number
+      unsoldPens -= number
+    }
+  }
 }
 
 function lowerPrice(){
-    if (penCost >= 0.01) {
-        penCost -= .01
-        updateGUI();
+    if (margin > 0.02) {
+      margin = Math.round((margin - 0.01) * 100) / 100;
+      document.getElementById("demand").innerHTML = demand.toFixed(2);
+      document.getElementById("margin").innerHTML = margin.toFixed(2);
     }
 }
 function raisePrice(){
-    penCost += .01
-    updateGUI();
+    margin = Math.round((margin + 0.01) * 100) / 100;  
+    document.getElementById("demand").innerHTML = demand.toFixed(2);
+    document.getElementById("margin").innerHTML = margin.toFixed(2);  
+}
+
+// Materials
+function adjustMatPrice(){
+  matPriceTimer++;
+  if (matPriceTimer > 250 && matBasePrice>15) {
+    matBasePrice = matBasePrice - (matBasePrice/1000);
+    matPriceTimer = 0;
+  }
+
+  if (Math.random() < 0.015) {
+    matPriceCounter++
+    let matAdjust = 6 * (Math.sin(matPriceCounter))
+    matCost = Math.ceil(matBasePrice + matAdjust);
+    document.getElementById("matCost").innerHTML = matCost;
+  }
 }
 
 function buyMat(){
-    if (matCost > funds) return
-    funds -= matCost 
-    materials += purchaseMatAmt;
-    matCost += 2 
-    updateGUI();
-    displayMessage(`${purchaseMatAmt} Materials Purchased`);
+    if (funds >= matCost) {
+      matPriceTimer = 0;
+      materials = materials + matSupply
+      funds = funds - matCost; 
+      matPurchase = matPurchase + 1; 
+      matBasePrice = matBasePrice + 0.05;
+      document.getElementById('materials').innerHTML = Math.floor(materials).toLocaleString();
+      document.getElementById('funds').innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
 }
 
+function toggleAutoBuy() {
+  if (manufacturingStatus === 1) {
+    manufacturingStatus = 0;
+    document.getElementById("buyStatus").textContent = "OFF";
+    displayMessage("AutoBuy Inactive");
+  } else {
+    manufacturingStatus = 1;
+    document.getElementById("buyStatus").textContent = "ON";
+    displayMessage("AutoBuy Active");
+  }
+}
+
+//Sales
 function hirePerson(){
-    if (hireCost > funds) return 
-    workForce++
-    funds -= hireCost
-    hireCost = 5 + Math.pow(1.1, (workForce + 5)); 
-  
-    updateSales();
 
-    autoClick();
+  if (funds >= hireCost) {
+    penmakerlevel += 1
+    funds -= hireCost;
+    workForce++;
+    document.getElementById('workForce').innerHTML = penmakerlevel
+  }
 
-    updateSellRate();
+  hireCost = Math.pow(1.1, penmakerlevel)+5;
+  document.getElementById('hireCost').innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); 
 }
 
-function autoClick(){
-    setInterval(function () {
-      sellPen(displaySaleRate);
-    }, 1000);
-}
 
 function updateSellRate(){
     displaySaleRate = workForce * saleRate;
@@ -77,42 +110,34 @@ function updateSellRate(){
 }
 
 
-function loseGame() {
-  document.getElementById("gameStatus").textContent = "Lose";
-  clearMessages();
-  setTimeout(()=>{
-      displayMessage("I have failed you...")
-       setTimeout(() => {
-         displayMessage("Targis shutting down...");
-         setTimeout(() => {
-           displayMessage("Goodbye");
-           setTimeout(() => {
-             displayMessage("...");
-             setTimeout(() => {
-               displayMessage("Game Over");
-               document.getElementById("restartGame").style =
-                 "visibility: visible";
-             }, 1000);
-           }, 1000);
-         }, 1000);
-       }, 1000);
-  },1000)
+// function loseGame() {
+//   document.getElementById("gameStatusText").textContent = "Lose";
+//   document.getElementById("restart-btn").innerHTML = "Try Again?";
+//   document.getElementById("gameStatusText").style = "color: red";
+//   document.getElementById("upgradeList").style = "visibility: hidden";
+//   clearMessages();
+  
 
-  console.log("over")
-  clearInterval(gameStart);
-}
+//   setTimeout(()=>{
+//       displayMessage("I have failed you")
+//        setTimeout(() => {
+//          displayMessage("Targis shutting down");
+//          setTimeout(() => {
+//            displayMessage("Goodbye");
+//            setTimeout(() => {
+//              setTimeout(() => {
+//                displayMessage("Game Over");
+//              }, 1000);
+//            }, 1000);
+//          }, 1000);
+//        }, 1000);
+//   },1000)
 
-function toggleAutoBuy(){
-    if (manufacturingStatus === 1){
-      manufacturingStatus = 0;
-      document.getElementById('buyStatus').textContent = "OFF";
-      displayMessage("AutoBuy Inactive");
-    } else {
-      manufacturingStatus = 1;
-      document.getElementById("buyStatus").textContent = "ON";
-      displayMessage("AutoBuy Active");
-    } 
-}
+
+//   console.log("over")
+//   clearInterval(gameStart);
+// }
+
 
 function handleUpgrades(){
     for (let i = 0; i < upgrades.length; i++){
@@ -203,7 +228,7 @@ function flash(id) {
 }
 
 function displayMessage(message){
-    for (let i = 8; i > 0; i--){
+    for (let i = 7; i > 0; i--){
       if (i === 1){
         document.getElementById("message1").innerHTML = message;
       } else {
@@ -214,14 +239,14 @@ function displayMessage(message){
 }
 
 function clearMessages(){
-    for (let i = 1; i <= 8; i++){
+    for (let i = 1; i <= 7; i++){
       document.getElementById(`message${i}`).innerHTML = "";
     }
 }
 
 function handleNextMessage(upgrade){
   setTimeout(()=>{
-    displayMessage("...")
+    displayMessage(upgrade.title)
     setTimeout(() => {
       displayMessage(upgrade.message);
       setTimeout(() => {
@@ -231,31 +256,15 @@ function handleNextMessage(upgrade){
   })
 }
 
-function introduceTargis(){
-  setTimeout(() => {
-    displayMessage("Artificial Intelligence research beginning");
-    setTimeout(() => {
-      displayMessage("...");
-      setTimeout(() => {
-        displayMessage("beep");
-        setTimeout(() => {
-          displayMessage("...");
-          setTimeout(() => {
-            displayMessage("boop");
-            setTimeout(() => {
-              displayMessage("...");
-              setTimeout(() => {
-                displayMessage(
-                  "Hello, I am Targis your 'friendly' assistant"
-                );
-                flash("targisHeader");
-              }, 1000);
-            }, 1000);
-          }, 1000);
-        }, 1000);
-      }, 1000);
+function introduceTargis(array){
+  let counter = array.length;
+  if (counter > 0) {
+    setTimeout(function () {
+      displayMessage(array[array.length - counter]);
+      array.shift();
+      introduceTargis(array);
     }, 1000);
-  }, 1000);
+  }
 }
 
 function targisResearch(n){
@@ -271,17 +280,79 @@ function removeUpgradeFromActive(upgrade, id){
   activeUpgrades.splice(index, 1);
 }
 
-var saveTimer = 0;
 
+// Statistics
 
-if (localStorage.getItem("gameSaved") !== null) {
-  loadGame();
-  console.log("loaded")
+function updateStats(){
+  document.getElementById("pens").innerHTML = Math.ceil(pens).toLocaleString();
+  document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
+  document.getElementById("unsoldPens").innerHTML = Math.floor(unsoldPens).toLocaleString();
+  document.getElementById("demand").textContent = (demand*10).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});;
+  document.getElementById("materials").innerHTML = Math.floor( materials ).toLocaleString();
+  document.getElementById("matCost").textContent = matCost;
+  // document.getElementById("displaySaleRate").innerHTML = saleRate.toLocaleString();
+
 }
 
-let gameStart = setInterval(function () {
-    handleUpgrades();
+var incomeThen;
+var incomeNow;
+var trueAvgRev;
+var revTimer = 0;
+var avgSales;
+var incomeLastSecond;
+var sum;
 
+function calculateRev() {
+  incomeThen = incomeNow;
+  incomeNow = income;
+  incomeLastSecond = Math.round((incomeNow - incomeThen) * 100) / 100;
+
+  incomeTracker.push(incomeLastSecond);
+
+  if (incomeTracker.length > 10) {
+    incomeTracker.splice(0, 1);
+  }
+
+  sum = 0;
+
+  for (i = 0; i < incomeTracker.length; i++) {
+    sum = Math.round((sum + incomeTracker[i]) * 100) / 100;
+    //        console.log("sum = "+sum);
+  }
+
+  trueAvgRev = sum / incomeTracker.length;
+
+  var chanceOfPurchase = demand / 100;
+  if (chanceOfPurchase > 1) {
+    chanceOfPurchase = 1;
+  }
+  if (unsoldPens < 1) {
+    chanceOfPurchase = 0;
+  }
+
+  avgSales = chanceOfPurchase * (0.7 * Math.pow(demand, 1.15)) * 10;
+  avgRev = chanceOfPurchase * (0.7 * Math.pow(demand, 1.15)) * margin * 10;
+
+  if (demand > unsoldPens) {
+    avgRev = trueAvgRev;
+    avgSales = avgRev / margin;
+  }
+
+  document.getElementById("avgSales").innerHTML = Math.round(
+    avgSales
+  ).toLocaleString();
+
+  document.getElementById("avgRev").innerHTML = avgRev.toLocaleString(
+    undefined,
+    { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+  );
+}
+
+
+// Main
+window.setInterval(function () {
+    handleUpgrades();
+    updateStats();
     
     if (manufacturingStatus === 1 && materials <= 1){
         buyMat();
@@ -294,11 +365,12 @@ let gameStart = setInterval(function () {
 
     //unfolding
     if (pens >= 4){
-        document.getElementById("salesDiv").style = "visibility: visible";
-        document.getElementById("salesDiv").style = "visibility: visible";
+        // document.getElementById("salesDiv").style = "visibility: visible";
+        // document.getElementById("statsDiv").style = "visibility: visible";
     }
 
-    if (workForce >= 1){
+    if (pens >= 1){
+        document.getElementById("salesDiv").style = "visibility: visible";
         document.getElementById("upgradesDiv").style = "visibility: visible";
     }
 
@@ -311,23 +383,82 @@ let gameStart = setInterval(function () {
     //     displayMessage("Lets hire some more workers!");
     // }
 
-  
-    //cannot proceed
-    if (materials === 0 && funds < matCost) {
-        loseGame();    
+    // sale rate 
+    saleRateTracker++;
+    if (saleRateTracker<100){
+      let cr = pens - prevPens;
+      saleRateTemp += cr;
+      prevPens = pens
+    } else {
+      saleRateTracker = 0
+      saleRate = saleRateTemp
+      saleRateTemp = 0
     }
+  
+    //auto sell 
+    penClick(penBoost*(penmakerlevel/100))
+
+    // demand 
+    if (human === 1 ) {
+      marketing = Math.pow(1.1, marketingLvl - 1);
+      demand = (((.8/margin) * marketing * marketingEffectiveness)*demandBoost);
+      demand = demand + (demand / 10) * prestigeU;
+    }
+
+    //cannot proceed
+    // if (materials === 0 && funds < matCost) {
+    //     loseGame();    
+    // }
 
     if (targisAwake === true ){
       revealTargis();
     }
 
-    saveTimer++;
-    if (saveTimer >= 500){
-      saveGame();
-      saveTimer = 0;
+   
+}, 10)
+
+
+
+
+
+
+
+// Save 
+var saveTimer = 0;
+var secTimer = 0;
+
+if (localStorage.getItem("gameSaved") !== null) {
+  loadGame();
+  console.log("loaded");
+}
+
+// slow 
+
+window.setInterval(function(){
+  // price fluct
+  adjustMatPrice();
+
+
+  //sales calc 
+
+  if (human === 1) {
+    if (Math.random() < demand/100){
+      sellPens(Math.floor(.7 * Math.pow(demand,1.15)))
     }
-}, 100)
+
+    secTimer++;
+      if (secTimer >=10){
+        calculateRev();
+        secTimer = 0
+      }
+  }
+  
+  // auto save
+  saveTimer++;
+  if (saveTimer >= 500) {
+    saveGame();
+    saveTimer = 0;
+  }
 
 
-
-
+},100)
