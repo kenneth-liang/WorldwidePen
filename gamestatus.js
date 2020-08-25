@@ -11,19 +11,41 @@ function saveGame(){
     let gameSaved = {
       pens: pens,
       funds: funds,
-      penCost: penCost,
       materials: materials,
+      matSupply: matSupply,
+      matPurchase: matPurchase,
       purchaseMatAmt: purchaseMatAmt,
-      saleRate: saleRate,
       matCost: matCost,
       hireCost: hireCost,
       workForce: workForce,
+      saleRate: saleRate,
       displaySaleRate: displaySaleRate,
+      saleRateTracker: saleRateTracker,
+      saleRateTemp: saleRateTemp,
+      prevPens: prevPens,
       manufacturingStatus: manufacturingStatus,
       blinkRate: blinkRate,
-      saleRate: saleRate,
       targisKnowledge: targisKnowledge,
       targisAwake: targisAwake,
+      targis: targis,
+      matPriceTimer: matPriceTimer,
+      matBasePrice: matBasePrice,
+      matPriceCounter: matPriceCounter,
+      unsoldPens: unsoldPens,
+      transaction: transaction,
+      human: human,
+      demand: demand,
+      demandBoost: demandBoost,
+      income: income,
+      incomeTracker: incomeTracker,
+      margin: margin,
+      pensSold: pensSold,
+      penBoost: penBoost,
+      penmakerlevel: penmakerlevel,
+      marketing: marketing,
+      marketingLvl: marketingLvl,
+      marketingEffectiveness: marketingEffectiveness,
+      prestigeU: prestigeU,
     };
     
 
@@ -38,44 +60,67 @@ function saveGame(){
 function refresh() {
     document.getElementById("pens").textContent = pens;
     document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    document.getElementById("penprice").innerHTML = penCost.toFixed(2);
-    document.getElementById("mat").textContent = materials;
+    document.getElementById("margin").innerHTML = margin.toFixed(2);
+    document.getElementById("materials").textContent = materials;
     document.getElementById("matCost").textContent = matCost;
-    document.getElementById("displaySaleRate").textContent = displaySaleRate;
+    // document.getElementById("displaySaleRate").textContent = displaySaleRate;
     document.getElementById("workForce").textContent = workForce;
     document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
-    document.getElementById("displaySaleRate").textContent = displaySaleRate;
+    // document.getElementById("displaySaleRate").textContent = displaySaleRate;
     document.getElementById("targisAwareness").innerHTML = targisKnowledge;
     document.getElementById("salesDiv").style = "visibility: visible";
-    document.getElementById("autoBuy").style = "visibility: visible";
+    // document.getElementById("autoBuy").style = "visibility: visible";
     document.getElementById("businessDiv").style = "visibility: visible";
     document.getElementById("productionDiv").style = "visibility: visible";
+    document.getElementById("statsDiv").style = "visibility: visible";
     flash("targisChat");
     flash("targisHeader");
     displayMessage("Game Loaded")
     displayMessage("Welcome Back!")
-    autoClick();
 }
 
 function loadGame(){
     let game = JSON.parse(localStorage.getItem("gameSaved"));
     let loadUpgradeUses = JSON.parse(localStorage.getItem("savedUpgradesUses"));
     let loadUpgradesActive = JSON.parse(localStorage.getItem("savedUpgradesActive"));
-    pens = game.pens
-    funds = game.funds
-    penCost = game.penCost
-    materials = game.materials
-    purchaseMatAmt = game.purchaseMatAmt
-    matCost = game.matCost
-    hireCost = game.hireCost
-    workForce = game.workForce
-    displaySaleRate = game.displaySaleRate
-    manufacturingStatus = game.manufacturingStatus
-    blinkRate = game.blinkRate
-    saleRate = game.saleRate
-    targisKnowledge = game.targisKnowledge
-    targisAwake = game.targisAwake
+    pens = game.pens;
+    funds = game.funds;
+    materials = game.materials;
+    matSupply = game.matSupply;
+    matPurchase = game.matPurchase;
+    purchaseMatAmt = game.purchaseMatAmt;
+    matCost = game.matCost;
+    hireCost = game.hireCost;
+    workForce = game.workForce;
+    saleRate = game.saleRate;
+    displaySaleRate = game.displaySaleRate;
+    saleRateTracker = game.saleRateTracker;
+    saleRateTemp = game.saleRateTemp;
+    prevPens = game.prevPens;
+    manufacturingStatus = game.manufacturingStatus;
+    blinkRate = game.blinkRate;
+    targisKnowledge = game.targisKnowledge;
+    targisAwake = game.targisAwake;
+    targis = game.targis;
+    matPriceTimer = game.matPriceTimer;
+    matBasePrice = game.matBasePrice;
+    matPriceCounter = game.matPriceCounter;
+    unsoldPens = game.unsoldPens;
+    transaction = game.transaction;
+    human = game.human;
+    demand = game.demand;
+    demandBoost = game.demandBoost;
+    income = game.income;
+    incomeTracker = game.incomeTracker;
+    margin = game.margin;
+    pensSold = game.pensSold;
+    penBoost = game.penBoost;
+    penmakerlevel = game.penmakerlevel;
+    marketing = game.marketing;
+    marketingLvl = game.marketingLvl;
+    marketingEffectiveness = game.marketingEffectiveness;
+    prestigeU = game.prestigeU;
 
     for (let i = 0; i < upgrades.length; i++){
         upgrades[i].uses = loadUpgradeUses[i];
