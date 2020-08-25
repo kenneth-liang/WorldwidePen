@@ -48,12 +48,43 @@
                 <!-- <span>Portfolio</span> -->
             </div>
         </header>
-        <div class="animation-container">
-            <div class="animation">
-                <!-- hello -->
-                    <canvas id="canvas" width="900" height="300"> </canvas>
-                
+        <div class="something-container">
+            <div class="animation-container">
+                <div class="animation">
+                    <!-- <canvas id="canvas" width="900" height="300"> </canvas> -->
+                </div>
             </div>
+            <div class="contentContainer" id="aiDiv" style="visibility: hidden">
+                <div id="targisHeader" style="visibility: hidden">
+                    <h3 id="targis">Targis</h3>
+                    <div id="targisConscious">
+                        <span id="targisAwareness">1</span>% Consciousness
+                    </div>
+                </div>
+                <div id="targisChat">
+                    <div class="messages">
+                        <!-- <p class="message-old"><span>&nbsp;.&nbsp;</span><span id="message8"></span></p> -->
+                        <!-- <p class="message-old"><span>&nbsp;.&nbsp;</span><span id="message7"></span></p> -->
+                        <p class="message-old"><span>&nbsp;.&nbsp;</span><span id="message6"></span></p>
+                        <p class="message-old"><span>&nbsp;.&nbsp;</span><span id="message5"></span></p>
+                        <p class="message-old"><span>&nbsp;.&nbsp;</span><span id="message4"></span></p>
+                        <p class="message-old"><span>&nbsp;.&nbsp;</span><span id="message3"></span></p>
+                        <p class="message-old"><span>&nbsp;.&nbsp;</span><span id="message2"></span></p>
+            
+                        <p class="message-new"><span>&nbsp;>&nbsp;</span><span id="message1"></span><span id="cursor"
+                                class="pulsate">...</span></p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="gameStatus" style="visibility: visible">
+                    <div>Game Status: <span id="gameStatusText">In Progress</span></div>
+                    <br>
+                    <button class="btnRestart" id="restart-btn" onclick=reset()>Restart Game</button>
+                </div>
+            </div>
+            
+            
         </div>
 
   
@@ -63,43 +94,43 @@
         </div> -->
      
         <div class="game-controls">
+            
             <div id="topDiv">
                 <h2>Pens: <span id=pens>0</span></h2>
-                <div class="gameStatus">
+                <!-- <div class="gameStatus">
                     <div>Game Status: <span id="gameStatus">In Progress</span></div>
                     <button onclick=reset()>Restart Game</button>
-                </div>
+                </div> -->
             </div>
             <div id="gameDiv" class="contentContainer" >      
                 <span>Click Here!</span>
-                <button class="clicker"onclick="sellPen(1)">Sell Pen</button>
+                <button class="clicker"onclick="penClick(1)">Sell Pen</button>
             </div>
             </br>
-
             <div id="leftDiv">
                 <div id="businessDiv" class="contentContainer" style="visibility: hidden" >
                     <h3> Business </h3>
                     <div class="subcontent">
                         <div>Available Funds: $ <span id="funds">0</span></div>
-                        <div>Price per pen $<span id="penprice">0.25</span></div>
+                        <div>Price per pen $<span id="margin">0.10</span></div>
+                        <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
+                        <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
                         <br>
-                        <div id="penFeatures">Pen Features:
+                        <!-- <div id="penFeatures">Pen Features:
                             <span id="penFeatureDescription">None</span>
-                        </div>
+                        </div> -->
                     </div>
-                    <!-- <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
-                    <button id="btnRaisePrice" onclick="raisePrice()">increase</button> -->
+                    
                 </div>
                 <div id="productionDiv" class="contentContainer" style="visibility: hidden">
                     <div id="materialsDiv">
-                        <h3>Materials</h3>
+                        <h3>Materials: <span id="materials">1000</span></h3>
                         <div class="subcontent">
+                            <div class="matCostDisplay">Cost: $ <span id="matCost">20</span></div>
                             <button id="btnBuyMat" onclick='buyMat()'>Buy Materials</button>
-                            <span id="mat">1000</span>
+                            +<span id="matSupply">1000</span>
                             </br>
-                            <div>Cost: $ <span id="matCost">10</span></div>
                             
-    
                             <div id="autoBuy" style="visibility: hidden">
                                 <button id="btnAutoBuy" onclick="toggleAutoBuy()">
                                     Toggle AutoBuy
@@ -116,35 +147,21 @@
                 <div class="contentContainer" id="salesDiv" style="visibility: hidden">
                     <h3>Sales Team</h3>
                     <div class="subcontent">
-                        <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div>
                         <div>Workforce: <span id="workForce">0</span> employees</div>
                         <button onclick="hirePerson()">Hire</button>
                         <div>Cost: $ <span id="hireCost">5.00</span></div>
                     </div>
                 </div>
-                <div class="contentContainer" id="aiDiv" style="visibility: hidden">
-                    <div id="targisHeader" style="visibility: hidden" >
-                        <h3 id="targis" >Targis</h3>
-                        <div id="targisConscious">
-                            <span id="targisAwareness">1</span>% Consciousness
-                        </div>
+                <div class="contentContainer" id="statsDiv" style="visibility: hidden">
+                    <h3>Statistics</h3>
+                    <div class="subcontent">
+                        <div>Public Demand: <span id="demand">10</span>%</div>
+                        <!-- <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div> -->
+                        <div>Unsold Inventory: <span id="unsoldPens">0</span></div>
+                        <div>Avg. Rev. per sec: $ <span id="avgRev">0</span></div>
+                        <div>Avg. Pens Sold per sec: <span id="avgSales">0</span></div>
                     </div>
-                    <!-- messages -->
-                    <div id="targisChat">
-                        <div class="messages">
-                            <div><span>&nbsp;>&nbsp;</span><span id="message8"></span></div>
-                            <div><span>&nbsp;>&nbsp;</span><span id="message7"></span></div>
-                            <div><span>&nbsp;>&nbsp;</span><span id="message6"></span></div>
-                            <div><span>&nbsp;>&nbsp;</span><span id="message5"></span></div>
-                            <div><span>&nbsp;>&nbsp;</span><span id="message4"></span></div>
-                            <div><span>&nbsp;>&nbsp;</span><span id="message3"></span></div>
-                            <div><span>&nbsp;>&nbsp;</span><span id="message2"></span></div>
-                            <div><span>&nbsp;>&nbsp;</span><span id="message1"></span></div>
-                        </div>
-                    </div>
-                    <div id="restartGame" style="visibility: hidden">
-                        <button class="btnRestart" onclick="reset()">Try Again?</button>
-                    </div>
+
                 </div>
             </div>
 
@@ -166,10 +183,11 @@
 </body>
 <script src="modal.js"></script>
 <script src="variables.js"></script>
-<script src="upgrades.js"></script>
+<!-- <script src="upgrades.js"></script> -->
+<script src="projects.js"></script>
 <script src="gamestatus.js"></script>
 <script src="main.js"></script>
-<script src="animation/animation.js" type="text/javascript"></script>
+<!-- <script src="animation/animation.js" type="text/javascript"></script> -->
 <!-- <script src="animation/control.js" type="text/javascript"></script> -->
 
 </html>
