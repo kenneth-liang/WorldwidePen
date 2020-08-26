@@ -34,10 +34,10 @@
     height: 100%;
     width: 100%
 }
-.progress {
+#progress {
     background-image: url("https://i.gifer.com/origin/7e/7eb12511c10312207ef4ba12b1769a2e_w200.gif");
     background-size: cover;
-    height: 90%;
+    height: 98%;
     width: 100%;
 }
 
@@ -70,7 +70,7 @@ h2 {
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
     /* border-bottom: 1px solid black; */
     margin: 5px;
@@ -126,7 +126,7 @@ button {
 
 .game-container{
     max-width: 1100px;
-    height: 1000px;
+    height: auto;
     background: whitesmoke;
     display: flex;
     flex-direction: column;
@@ -347,7 +347,7 @@ canvas {
 }
 
 
-#materials {
+#materials{
     font-weight: 500;
     font-family: monospace
 }
@@ -366,4 +366,26 @@ canvas {
 
 .materials-buy {
     margin: 5px 0 5px 0 
+}
+
+.marketing-container{
+    margin-top: 1rem;
+}
+
+.subcontent {
+    font-size: 14px;
+}
+
+div#globeDiv {
+    display: contents;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pen-own-title {
+    font-weight: 500;
+    font-family: monospace;
+    margin-left: 1rem;
+    font-size: 20px
 }

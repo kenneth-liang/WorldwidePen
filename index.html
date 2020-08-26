@@ -103,13 +103,13 @@
                     </div>
                 </div>
                 <div id="globeDiv" class="globe-container" style="visibility: hidden">
-                    Global Ownership 
                     <div class="globe">
                         <div class="globe-progress">
-                            <div class="progress">
+                            <div id="progress" >
                             </div>
                         </div>
                     </div>
+                    <div id="pen-own-title">Pen World Ownership: <span id="world-own">1</span>%</div>
                 </div>
             </div>
             
@@ -123,9 +123,14 @@
                         <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
                         <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
                         <br>
-                        <!-- <div id="penFeatures">Pen Features:
-                            <span id="penFeatureDescription">None</span>
-                        </div> -->
+                        <div id="marketingDiv" class="marketing-container" style="visibility: hidden">
+                            <button id="btnMarketing" onclick="buyAds()">Marketing</button> 
+                            <span class="engineText6"> 
+                                Level: </span><span  id="marketingLvl">1</span>
+                                <br />
+                                Cost: $ <span id="adCost">100.00</span>
+                                <br />
+                        </div>
                     </div>
                     
                 </div>
@@ -163,7 +168,7 @@
                         <div id="droneDiv" style="visibility: hidden">
                             <div>Fleet: <span id="fleet">0</span> drones</div>
                             <button id="hirebtn" onclick="deployDrone()">Deploy</button>
-                            <div>Cost: $ <span id="droneCost">500.00</span></div>
+                            <div>Cost: $ <span id="droneCost">50.00</span></div>
                         </div>
                     </div>
                 </div>

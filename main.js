@@ -1,3 +1,4 @@
+// Business
 function penClick(number){
   if (materials >= 1) {
     if (number > materials){
@@ -13,8 +14,6 @@ function penClick(number){
     document.getElementById("unsoldPens").innerHTML = Math.floor(unsoldPens).toLocaleString();
   }
 }
-
-
 
 function sellPens(number){
   if (unsoldPens > 0){
@@ -47,6 +46,19 @@ function raisePrice(){
     document.getElementById("margin").innerHTML = margin.toFixed(2);  
 }
 
+// Marketing 
+
+function buyAds(){
+  if (funds >= adCost) {
+    marketingLvl += 1
+    funds -= adCost
+    adCost = Math.floor(adCost * 2);
+    document.getElementById('adCost').innerHTML = adCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('funds').innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('marketingLvl').innerHTML = marketingLvl;
+  }
+} 
+
 // Materials
 function adjustMatPrice(){
   matPriceTimer++;
@@ -59,7 +71,6 @@ function adjustMatPrice(){
     matPriceCounter++
     let matAdjust = 6 * (Math.sin(matPriceCounter))
     matCost = Math.ceil(matBasePrice + matAdjust);
-    // console.log(matCost)
     document.getElementById("matCost").innerHTML = matCost;
 
     // color mat cost 
@@ -112,6 +123,7 @@ function hirePerson(){
   document.getElementById('hireCost').innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); 
 }
 
+// drones 
 function deployDrone() {
   if (funds >= droneCost) {
     fleet = fleet + 1;
@@ -120,7 +132,7 @@ function deployDrone() {
     document.getElementById("funds").innerHTML = funds.toLocaleString( undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 } );
   }
 
-  droneCost = Math.pow(1.07, fleet) * 1000;
+  droneCost = Math.pow(1.07, fleet) * 100;
   document.getElementById( "droneCost" ).innerHTML = droneCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 }
 
@@ -160,7 +172,7 @@ function deployDrone() {
 //   clearInterval(gameStart);
 // }
 
-
+// upgrades 
 function handleUpgrades(){
     for (let i = 0; i < upgrades.length; i++){
         if (upgrades[i].uses !== 0 && upgrades[i].trigger()) {
@@ -207,22 +219,20 @@ function revealUpgrade(upgrade) {
     flash(upgrade.id)
 }
 
-function addPenFeature(description){
-  document.getElementById("penFeatureDescription").innerHTML = description;
-  flash("penFeatureDescription");
-  flash("penprice");
-}
+// function addPenFeature(description){
+//   document.getElementById("penFeatureDescription").innerHTML = description;
+//   flash("penFeatureDescription");
+//   flash("penprice");
+// }
 
 
-function revealTargis(){
-    targisAwake = true;
-    document.getElementById("aiDiv").style = "visibility: visible";
-}
 
 // function animate(){
     // annimates character 
 // }
 
+
+//flash 
 function flash(id) {
   var upgrade = document.getElementById(id);
 
@@ -249,6 +259,7 @@ function flash(id) {
   }
 }
 
+// messages
 function displayMessage(message){
     for (let i = 7; i > 0; i--){
       if (i === 1){
@@ -276,6 +287,13 @@ function handleNextMessage(upgrade){
       }, 500);
     }, 500);
   })
+}
+
+
+// ai 
+function revealTargis() {
+  targisAwake = true;
+  document.getElementById("aiDiv").style = "visibility: visible";
 }
 
 function introduceTargis(array){
@@ -317,6 +335,7 @@ function updateStats(){
 
 }
 
+// revenue
 var incomeThen;
 var incomeNow;
 var trueAvgRev;
@@ -359,9 +378,6 @@ function calculateRev() {
     avgRev = trueAvgRev;
     avgSales = avgRev / margin;
   }
-  // console.log("avg sales " + avgSales);
-  // console.log("avg rev " + avgRev);
-
   // handle NaN
   if (isNaN(avgRev) || isNaN(avgSales)) {
     document.getElementById("avgRev").innerHTML = "computing...";
@@ -374,12 +390,11 @@ function calculateRev() {
     document.getElementById("avgSales").innerHTML = Math.round( avgSales ).toLocaleString();
     document.getElementById("avgRev").innerHTML = avgRev.toLocaleString( undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 } );
   }
-
-
 }
 
 
-// Main
+
+// Main Loop
 window.setInterval(function () {
   handleUpgrades();
   updateStats();
@@ -419,7 +434,6 @@ window.setInterval(function () {
   }
 
   if (pens >= 1){
-      document.getElementById("salesDiv").style = "visibility: visible";
       document.getElementById("upgradesDiv").style = "visibility: visible";
   }
 
@@ -428,7 +442,7 @@ window.setInterval(function () {
   if (human === 1 ) {
     marketing = Math.pow(1.1, marketingLvl - 1);
     demand = (((.8/margin) * marketing * marketingEffectiveness)*demandBoost);
-    demand = demand + (demand / 10) * prestigeU;
+    demand = demand + ((demand / 10) * popularity);
   }
 
   //cannot proceed
@@ -438,6 +452,12 @@ window.setInterval(function () {
 
   if (targisAwake === true ){
     revealTargis();
+  }
+
+  if (materials === 0) {
+    document.getElementById("materials").classList.add("pulsate");
+  } else {
+    document.getElementById("materials").classList.remove("pulsate");
   }
 
   if (workForce === 0 && funds > hireCost) {
@@ -452,27 +472,41 @@ window.setInterval(function () {
     document.getElementById("hirebtn").disabled = false; 
   }
 
+  if (margin === 0.01) {
+    document.getElementById("btnLowPrice").disabled = true;
+  } else {
+    document.getElementById("btnLowPrice").disabled = false;
+  }
+
+
   if (funds < matCost) {
     document.getElementById("btnBuyMat").disabled = true;
   } else {
     document.getElementById("btnBuyMat").disabled = false; 
   }
 
-  if ( avgSales < 1) {
+  if ( Math.round(avgSales) === 0) {
     document.getElementById("btnLowPrice").classList.add("pulsate");
   } else {
     document.getElementById("btnLowPrice").classList.remove("pulsate");
   }
 
-  if (funds > matCost && materials < 1 && statisticsFlag === 1) {
+  if (funds > matCost && materials < 1) {
     document.getElementById("btnBuyMat").classList.add("pulsate");
   } else {
     document.getElementById("btnBuyMat").classList.remove("pulsate");
   }
+
+  if (funds < adCost ) {
+    document.getElementById("btnMarketing").disabled = true;
+  } else {
+    document.getElementById("btnMarketing").disabled = false; 
+  }
+
+  increaseWorldOwned();
+
+
 }, 10)
-
-
-
 
 
 
@@ -482,16 +516,30 @@ var saveTimer = 0;
 var secTimer = 0;
 
 if (localStorage.getItem("gameSaved") !== null) {
+  //load game if returning user
   loadGame();
   // console.log("loaded");
 }
 
-// slow 
 
+
+function increaseWorldOwned() {
+  if (milestone > 0) {
+    worldOwned = (milestone * 5);
+    document.getElementById("world-own").innerHTML = worldOwned ;
+    let progress = 95 - worldOwned ;
+    document.getElementById("progress").style = `height: ${progress}%`;
+    // debugger
+    // flash("world-own");
+  }
+}
+
+
+
+// slow loop 
 window.setInterval(function(){
   // price fluct
   adjustMatPrice();
-
 
   //sales calc 
 
@@ -514,5 +562,50 @@ window.setInterval(function(){
     saveTimer = 0;
   }
 
+  if (pens > 1000000) {// 1 million pens
+    milestone = 20;
+  } else if (pens > 900000) {
+    milestone = 19;
+  } else if (pens > 800000) {
+    milestone = 18;
+  } else if (pens > 700000) {
+    milestone = 17;
+  } else if (pens > 600000) {
+    milestone = 16;
+  } else if (pens > 500000) {
+    milestone = 15;
+  } else if (pens > 400000) {
+    milestone = 14;
+  } else if (pens > 300000) {
+    milestone = 13;
+  } else if (pens > 200000) {
+    milestone = 12;
+  } else if (pens > 150000) {
+    milestone = 11;
+  } else if (pens > 90000) {
+    milestone = 10;
+  } else if (pens > 80000) {
+    milestone = 9;
+  } else if (pens > 7000) {
+    milestone = 8;
+  } else if (pens > 6000) {
+    milestone = 7;
+  } else if (pens > 5000) {
+    milestone = 6;
+  } else if (pens > 4000) {
+    milestone = 5;
+  } else if (pens > 3000) {
+    milestone = 4;
+  } else if (pens > 2000) {
+    milestone = 3;
+  } else if (pens > 1000) {
+    milestone = 2;
+  } else if (pens > 500) {
+    milestone = 1;
+  } 
+
+  
 
 },100)
+
+

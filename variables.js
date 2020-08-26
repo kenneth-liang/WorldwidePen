@@ -1,5 +1,5 @@
 let pens = 0;
-let funds = 50;
+let funds = 100;
 let materials = 1000;
 let matSupply = 1000;
 let matPurchase = 0; 
@@ -34,11 +34,17 @@ let penmakerlevel = 0;
 let marketing = 1; 
 let marketingLvl= 1;
 let marketingEffectiveness = 1;
-let prestigeU = 0
+let popularity = 0;
 let autoBuy = 0
 let droneFlag = 0
-let droneCost = 500
+let droneCost = 50
 let fleet = 0
 let droneBoost = 1
 let statisticsFlag = 0
+let adCost = 100
+let globeFlag = 0
+let worldOwned = 0;
+let milestone = 0
+let marketingFlag = 0 
+
 

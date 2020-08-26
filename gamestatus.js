@@ -45,13 +45,18 @@ function saveGame(){
     marketing: marketing,
     marketingLvl: marketingLvl,
     marketingEffectiveness: marketingEffectiveness,
-    prestigeU: prestigeU,
+    popularity: popularity,
     autoBuy: autoBuy,
     droneFlag: droneFlag,
     droneCost: droneCost,
     fleet: fleet,
     droneBoost: droneBoost,
-    statisticsFlag: statisticsFlag
+    statisticsFlag: statisticsFlag,
+    adCost: adCost,
+    globeFlag: globeFlag,
+    worldOwned: worldOwned,
+    milestone: milestone,
+    marketingFlag: marketingFlag,
     };
     
 
@@ -76,13 +81,32 @@ function refresh() {
     document.getElementById("funds").innerHTML = funds.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
     // document.getElementById("displaySaleRate").textContent = displaySaleRate;
     document.getElementById("targisAwareness").innerHTML = targisKnowledge;
+    document.getElementById("fleet").innerHTML = fleet;
+
+
+    document.getElementById("businessDiv").style = "visibility: visible";
+    document.getElementById("productionDiv").style = "visibility: visible";
     document.getElementById("salesDiv").style = "visibility: visible";
     if (autoBuy === 1) {
         document.getElementById("autoBuy").style = "visibility: visible";
     }
-    document.getElementById("businessDiv").style = "visibility: visible";
-    document.getElementById("productionDiv").style = "visibility: visible";
-    document.getElementById("statsDiv").style = "visibility: visible";
+
+    if (statisticsFlag === 1) {
+        document.getElementById("statsDiv").style = "visibility: visible";
+    }
+
+    if (globeFlag === 1) {
+        document.getElementById("globeDiv").style = "visibility: visible";
+    }
+    if (droneFlag === 1){
+        document.getElementById("droneDiv").style = "visibility: visible";
+    }
+
+    if (marketingFlag === 1) {
+        document.getElementById("marketingDiv").style = "visibility: visible";
+    }
+
+    
     flash("targisChat");
     flash("targisHeader");
     displayMessage("Game Loaded")
@@ -130,13 +154,18 @@ function loadGame(){
     marketing = game.marketing;
     marketingLvl = game.marketingLvl;
     marketingEffectiveness = game.marketingEffectiveness;
-    prestigeU = game.prestigeU;
+    popularity = game.popularity;
     autoBuy = game.autoBuy;
     droneFlag = game.droneFlag;
     droneCost = game.droneCost;
     fleet = game.fleet;
     droneBoost = game.droneBoost;
     statisticsFlag = game.statisticsFlag;
+    adCost = game.adCost;
+    globeFlag = game.globeFlag;
+    worldOwned = game.worldOwned;
+    milestone = game.milestone;
+    marketingFlag = game.marketingFlag;
 
     for (let i = 0; i < upgrades.length; i++){
         upgrades[i].uses = loadUpgradeUses[i];
