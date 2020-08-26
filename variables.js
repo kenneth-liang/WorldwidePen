@@ -47,4 +47,6 @@ let worldOwned = 0;
 let milestone = 0
 let marketingFlag = 0 
 
+let gameOkay = 1
+
 

@@ -395,15 +395,30 @@ function calculateRev() {
 
 
 // Main Loop
-window.setInterval(function () {
+let mainLoop = window.setInterval(function () {
+
+  if (pens > 0) {
+    document.getElementById("gameStatusText").innerHTML = "In Progress"
+    document.getElementById("gameStatusText").style = "color: green";
+  }
+
+  if (worldOwned === 100) {
+    document.getElementById("gameStatusText").innerHTML = "WIN";
+    document.getElementById("gameStatusText").style = "color: blue ";
+    gameOkay = 0
+    displayMessage("Winner Winner!")
+    window.clearInterval(mainLoop);
+    window.clearInterval(slowLoop);
+  }
+  // console.log("still going");
   handleUpgrades();
   updateStats();
     
   //auto sell 
   //workforce
-  penClick(penBoost*(penmakerlevel/100))
+  penClick(penBoost*(penmakerlevel/100) * gameOkay)
   //fleet
-  penClick(droneBoost*(fleet*5))
+  penClick(droneBoost * (fleet * 5) * gameOkay);
 
       // sale rate 
   saleRateTracker++;
@@ -505,6 +520,7 @@ window.setInterval(function () {
 
   increaseWorldOwned();
 
+  console.log("1")
 
 }, 10)
 
@@ -527,8 +543,12 @@ function increaseWorldOwned() {
   if (milestone > 0) {
     worldOwned = (milestone * 5);
     document.getElementById("world-own").innerHTML = worldOwned ;
-    let progress = 95 - worldOwned ;
-    document.getElementById("progress").style = `height: ${progress}%`;
+    if ( worldOwned === 100) {
+      document.getElementById("progress").style = `height: 0%`;
+    } else {
+      let progress = 95 - worldOwned ;
+      document.getElementById("progress").style = `height: ${progress}%`;
+    }
     // debugger
     // flash("world-own");
   }
@@ -537,7 +557,9 @@ function increaseWorldOwned() {
 
 
 // slow loop 
-window.setInterval(function(){
+let slowLoop = window.setInterval(function(){
+  // console.log("still going slow ");
+
   // price fluct
   adjustMatPrice();
 
@@ -604,7 +626,8 @@ window.setInterval(function(){
     milestone = 1;
   } 
 
-  
+  console.log("2")
+
 
 },100)
 
