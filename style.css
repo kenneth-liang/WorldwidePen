@@ -123,7 +123,7 @@ h3 {
     margin-right: 10px;
 }
 
-.fab, .fas{
+.fab, .fas, .far{
     font-size: 30px;
     margin: 8px;
     color: lightslategray;
@@ -510,7 +510,17 @@ strong {
     font-family: monospace;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     margin: 1rem;
     padding: 1rem;
+    font-size: 22px;
+}
+
+.fa-flag {
+    color: red
+}
+
+.fa-trophy {
+    color: gold
 }
