@@ -1,5 +1,5 @@
 let pens = 0;
-let funds = 100;
+let funds = 50;
 let materials = 1000;
 let matSupply = 1000;
 let matPurchase = 0; 
