@@ -46,6 +46,7 @@ function saveGame(){
       marketingLvl: marketingLvl,
       marketingEffectiveness: marketingEffectiveness,
       prestigeU: prestigeU,
+      autoBuy: autoBuy
     };
     
 
@@ -63,6 +64,7 @@ function refresh() {
     document.getElementById("margin").innerHTML = margin.toFixed(2);
     document.getElementById("materials").textContent = materials;
     document.getElementById("matCost").textContent = matCost;
+    document.getElementById("matSupply").textContent = matSupply;
     // document.getElementById("displaySaleRate").textContent = displaySaleRate;
     document.getElementById("workForce").textContent = workForce;
     document.getElementById("hireCost").innerHTML = hireCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
@@ -70,7 +72,9 @@ function refresh() {
     // document.getElementById("displaySaleRate").textContent = displaySaleRate;
     document.getElementById("targisAwareness").innerHTML = targisKnowledge;
     document.getElementById("salesDiv").style = "visibility: visible";
-    // document.getElementById("autoBuy").style = "visibility: visible";
+    if (autoBuy === 1) {
+        document.getElementById("autoBuy").style = "visibility: visible";
+    }
     document.getElementById("businessDiv").style = "visibility: visible";
     document.getElementById("productionDiv").style = "visibility: visible";
     document.getElementById("statsDiv").style = "visibility: visible";
@@ -78,6 +82,7 @@ function refresh() {
     flash("targisHeader");
     displayMessage("Game Loaded")
     displayMessage("Welcome Back!")
+    displayMessage("Computing Statistics")
 }
 
 function loadGame(){
@@ -121,6 +126,7 @@ function loadGame(){
     marketingLvl = game.marketingLvl;
     marketingEffectiveness = game.marketingEffectiveness;
     prestigeU = game.prestigeU;
+    autoBuy = game.autoBuy;
 
     for (let i = 0; i < upgrades.length; i++){
         upgrades[i].uses = loadUpgradeUses[i];

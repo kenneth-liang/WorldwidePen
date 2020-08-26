@@ -19,6 +19,28 @@
     width: 100%;
 }
 
+.globe {
+    background-image: url("https://i.gifer.com/origin/7e/7eb12511c10312207ef4ba12b1769a2e_w200.gif");
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+    /* border: 1px solid red; */
+}
+
+.globe-progress {
+    background: lightgreen;
+    border-radius: 50%;  
+    opacity: .3;
+    height: 100%;
+    width: 100%
+}
+.progress {
+    background-image: url("https://i.gifer.com/origin/7e/7eb12511c10312207ef4ba12b1769a2e_w200.gif");
+    background-size: cover;
+    height: 90%;
+    width: 100%;
+}
+
 body {
     margin: 0 auto;
     background: #1f1b35;
@@ -70,7 +92,10 @@ h3 {
     color: lightslategray;
 }
 
-
+.pens-container {
+    /* background: orange; */
+    width: 525px;
+}
 
 .btnRestart {
    width: 150px
@@ -101,6 +126,7 @@ button {
 
 .game-container{
     max-width: 1100px;
+    height: 1000px;
     background: whitesmoke;
     display: flex;
     flex-direction: column;
@@ -131,7 +157,7 @@ button {
 
 #middleDiv{
     float:left;
-    width: 315px;
+    width: 355px;
     margin: 0px 5px;
 }
 
@@ -145,7 +171,7 @@ button {
 }
 
 #topDiv {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -306,7 +332,7 @@ canvas {
     -webkit-animation: pulsate .5s ease-out;
     -webkit-animation-iteration-count: infinite; 
     opacity: 0.0;
-    }
+}
 
 @-webkit-keyframes pulsate {
     0% { 
@@ -328,4 +354,16 @@ canvas {
 
 .matCostDisplay {
     font-size: 18px;
+}
+
+.high-price {
+    color: red 
+}
+
+.low-price {
+    color: green 
+}
+
+.materials-buy {
+    margin: 5px 0 5px 0 
 }

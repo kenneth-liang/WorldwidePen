@@ -95,23 +95,31 @@
         <div class="game-controls">
             
             <div id="topDiv">
-                <h2>Pens: <span id=pens>0</span></h2>
-                <!-- <div class="gameStatus">
-                    <div>Game Status: <span id="gameStatus">In Progress</span></div>
-                    <button onclick=reset()>Restart Game</button>
-                </div> -->
+                <div class="pens-container">
+                    <h2>Pens: <span id=pens>0</span></h2>
+                    <div id="gameDiv" class="contentContainer">
+                        <span>Click Here!</span>
+                        <button class="clicker" onclick="penClick(1)">Sell Pen</button>
+                    </div>
+                </div>
+                <div id="globeDiv" class="globe-container" style="visibility: hidden">
+                    Global Ownership 
+                    <div class="globe">
+                        <div class="globe-progress">
+                            <div class="progress">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="gameDiv" class="contentContainer" >      
-                <span>Click Here!</span>
-                <button class="clicker"onclick="penClick(1)">Sell Pen</button>
-            </div>
+            
             </br>
             <div id="leftDiv">
                 <div id="businessDiv" class="contentContainer" style="visibility: hidden" >
                     <h3> Business </h3>
                     <div class="subcontent">
                         <div>Available Funds: $ <span id="funds">0</span></div>
-                        <div>Price per pen $<span id="margin">0.10</span></div>
+                        <div>Price per pen $<span id="margin">0.05</span></div>
                         <button id="btnLowPrice" onclick="lowerPrice()">decrease</button>
                         <button id="btnRaisePrice" onclick="raisePrice()">increase</button>
                         <br>
@@ -126,10 +134,10 @@
                         <h3>Materials: <span id="materials">1000</span></h3>
                         <div class="subcontent">
                             <div class="matCostDisplay">Cost: $ <span id="matCost">20</span></div>
-                            <button id="btnBuyMat" onclick='buyMat()'>Buy Materials</button>
-                            +<span id="matSupply">1000</span>
-                            </br>
-                            
+                            <div class="materials-buy">
+                                <button id="btnBuyMat" onclick='buyMat()'>Buy Materials</button>
+                                +<span id="matSupply">1000</span>
+                            </div>
                             <div id="autoBuy" style="visibility: hidden">
                                 <button id="btnAutoBuy" onclick="toggleAutoBuy()">
                                     Toggle AutoBuy
@@ -146,9 +154,17 @@
                 <div class="contentContainer" id="salesDiv" style="visibility: hidden">
                     <h3>Sales Team</h3>
                     <div class="subcontent">
-                        <div>Workforce: <span id="workForce">0</span> employees</div>
-                        <button onclick="hirePerson()">Hire</button>
-                        <div>Cost: $ <span id="hireCost">5.00</span></div>
+                        <div class="workforceDiv">
+                            <div>Workforce: <span id="workForce">0</span> employees</div>
+                            <button id="hirebtn" onclick="hirePerson()">Hire</button>
+                            <div>Cost: $ <span id="hireCost">5.00</span></div>
+                        </div>
+                        <br>
+                        <div id="droneDiv" style="visibility: hidden">
+                            <div>Fleet: <span id="fleet">0</span> drones</div>
+                            <button id="hirebtn" onclick="deployDrone()">Deploy</button>
+                            <div>Cost: $ <span id="droneCost">500.00</span></div>
+                        </div>
                     </div>
                 </div>
                 <div class="contentContainer" id="statsDiv" style="visibility: hidden">
@@ -158,7 +174,7 @@
                         <!-- <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div> -->
                         <div>Unsold Inventory: <span id="unsoldPens">0</span></div>
                         <div>Avg. Rev. per sec: $ <span id="avgRev">0</span></div>
-                        <div>Avg. Pens Sold per sec: <span id="avgSales">0</span></div>
+                        <div>Avg. Pens Sold per sec: <span  id="avgSales">0</span></div>
                     </div>
 
                 </div>
