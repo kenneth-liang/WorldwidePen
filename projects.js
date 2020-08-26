@@ -539,7 +539,7 @@ let upgrade40 = {
     return funds >= 1000;
   },
   trigger: function () {
-    return fleet > 1;
+    return fleet > 2;
   },
   effect: function () {
     funds -= 1000;
@@ -580,7 +580,7 @@ let upgrade50 = {
 };
 
 let upgrade51 = {
-  id: "upgradeButton50",
+  id: "upgradeButton51",
   title: "Investment from Mark Wuckerperg ",
   priceTag: "$0.00",
   description: "Funds +300, Materials +5000  ",
