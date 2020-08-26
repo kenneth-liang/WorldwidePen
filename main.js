@@ -481,8 +481,14 @@ let mainLoop = window.setInterval(function () {
     document.getElementById("hirebtn").classList.remove("pulsate");
   }
 
+  if (funds < droneCost){
+    document.getElementById("deploybtn").disabled = true;
+  } else {
+    document.getElementById("deploybtn").disabled = false;
+  }
+
   if (funds < hireCost) {
-    document.getElementById("hirebtn").disabled = true ;
+    
   } else {
     document.getElementById("hirebtn").disabled = false; 
   }

@@ -519,7 +519,7 @@ let upgrade34 = {
 // Drone upgrades
 
 let upgrade40 = {
-  id: "upgradeButton34",
+  id: "upgradeButton40",
   title: "Prismatic Alignment ",
   priceTag: "$1000.00",
   description: "Increases Drone Efficiency  ",
@@ -530,7 +530,7 @@ let upgrade40 = {
     return funds >= 1000;
   },
   trigger: function () {
-    return fleet > 2;
+    return fleet > 3;
   },
   effect: function () {
     funds -= 1000;
@@ -544,7 +544,7 @@ let upgrade40 = {
 let upgrade50 = {
   id: "upgradeButton50",
   title: "Investment from Elon Tusk ",
-  priceTag: "$0.00",
+  priceTag: "",
   description: "Funds +100, Materials +5000  ",
   message: "Looks like you are making some friends ",
   messageAI: "Use their invements wisely",
@@ -568,7 +568,7 @@ let upgrade50 = {
 let upgrade51 = {
   id: "upgradeButton51",
   title: "Investment from Mark Wuckerperg ",
-  priceTag: "$0.00",
+  priceTag: "",
   description: "Funds +300, Materials +5000  ",
   message: "Looks like you are making some friends ",
   messageAI: "Use their invements wisely",

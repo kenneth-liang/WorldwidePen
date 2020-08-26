@@ -22,48 +22,84 @@
     <div class="game-container">
         <header>
             <h1>Worldwide Pen</h1>
-            <!-- <div class="details">
-                Welcome! With a click of a button you can start your journey in selling pens. As you sell more and more pens, the
-                story will unfold in front of you. Accidently close the game? Fear not, your progress will be saved
-                automtically by your "friendly" helper. Tip: Upgrade your pen to sell at an higher rate.
-            </div> -->
-            <button id="myBtn">How To Play</button>
+            <button id="myBtn" class="read-me">Game Doc Read Me!</button>
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <div class="close">&times;</div>
                     <h1>Worldwide Pen</h1>
-
-                    <!-- <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Active</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
-                    </ul> -->
-
                     </br>
-                    <div class="mod-header">Welcome! With a click of a button you can start your journey in selling pens. As you sell more and more pens, the
+                    <div class="mod-header">With a click of a button you can start your journey in selling pens. As you sell more and more pens, the
                     story will unfold in front of you. 
-                    <!-- Accidently close the game? Fear not, your progress will be saved
-                    automtically by your "friendly" helper. Tip: Upgrade your pen to sell at an higher rate. -->
+
                     </div>
-                    <div class="mod-content-container"></div>
-                    <h3>How To:</h3>
-                    <div class="instructions1">
-                        <div id="circle">
-                            <button class="clicker">Sell Pen</button>
+                    <div class="mod-content-container">
+                        
+                        <div class="game-instructions">
+                            <p>Win: Pen World Ownership = 100% (1,000,000 Pens)</p>
                         </div>
-                        <div id="mouse-image"></div>
-                        <div id="stepone">
-                            <h3>1.</h3>
-                            <span>Starting by selling a couple of pens to get your business going. Once you have enough money hire your first employee!</span>
+                        <h3>Getting Started:</h3>
+                        <div class="instructions">
+                            <div id="circle">
+                                <button id="modal-click-btn" class="clicker">Sell Pen</button>
+                            </div>
+                            <div id="mouse-image"></div>
+                            <div id="stepone">
+                                <p>Starting by selling a couple of pens to get your business going. Once you have enough money hire your first employee!</p>
+                            </div>
+                        </div>
+                        <h3>Upgrades: </h3>
+                        <div class="instructions">
+                            <p>When available, upgrades can be purchased to elevate your business</p>
+                            <div class="screenshot1">
+                            </div>
+                        </div>
+                        <h3>Automation: </h3>
+                        <div class="instructions">
+                            <div class="screenshot2"></div>
+                            <p>Your Sales Team will automatically click(sell) pens for you. The larger the better, but be aware of the cost!</p>
+                        </div>
+                        <h3>Appendix: </h3>
+                        <div class="instructions">
+                            <div class="appendix-section">
+                                <div class="appendix-head">Business</div>
+                                <ul class="appendix-list">
+                                    <li><strong>Funds</strong> - The only exchange metric of this game. Used to purchase upgrades, materials, hire workers, etc </li>
+                                    <li><strong>Price Per Pen</strong> - Like it sounds. You can lower or raise your prices (by $0.01) with the buttons </li>
+                                    <li><strong>Marketing</strong> - Leveled metric, increasing drastically affects public demand of your pens and allows for increased price point sale </li>
+                                </ul>
+                                <div class="appendix-head">Materials</div>
+                                <ul class="appendix-list">
+                                    <li><strong>Materials</strong> - Primary resource used to create Pens. 1 material = 1 pen created </li>
+                                    <li><strong>Buying Materials</strong> - Using the button you can purchase materials at cost </li>
+                                    <li><strong>Cost of Materials </strong> - The price of materials fluctuates. Red: above average cost. Green: at or below average cost  </li>
+                                    <li><strong>AutoBuy </strong> - When toggled, materials will be purchased automatically at current cost  </li>
+                                </ul>
+                                <div class="appendix-head">Sales Team</div>
+                                <ul class="appendix-list">
+                                    <li><strong>Workforce</strong> - Number of employees hired. Will help you sell pens </li>
+                                    <li><strong>Fleet</strong> - Number of drones deployed. Will help you sell pens at higher rate </li>
+                                </ul>
+                                <div class="appendix-head">Statistics</div>
+                                <ul class="appendix-list">
+                                    <li><strong>Public Demand</strong> - Determines how attactice your pens are to the public. Reflects low you have to decrease your prices to maintain a positive revenue stream. </li>
+                                    <li><strong>Unsold Inventory</strong> - Number of pens you have made which exceed demand. Offload by offering a sale   </li>
+                                </ul>
+                            </div> 
+                        </div>
+                     
+                        <h3>Targis: </h3>
+                        <div class="instructions">
+                            <div class="targis-list">
+                                <div><strong>Targis</strong> is your friendly asistant in this game. Responsible for:</div>
+                                <li>Communicating current game status changes</li>
+                                <li>Flashing upgrades</li>
+                                <li>Displaying game progress (Pen World Ownership)</li>
+                                <li>Notifying when to decrease Price per Pen (generating 0 sales)</li>
+                            </div>
+                        </div>
+                        <h3>Coming soon: </h3>
+                        <div class="instructions">
+                            <p>Tips, More upgrades, and Evil Targis!</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +109,7 @@
             <div class="links">
                 <a href="https://github.com/kenneth-liang"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/insightfulkennethliang/"><i class="fab fa-linkedin"></i></a>
-                <!-- <span>Portfolio</span> -->
+                <a href="https://kennethliang.com/"><i class="fas fa-user-alt"></i></a>
             </div>
         </header>
         <div class="something-container">
@@ -195,7 +231,7 @@
                         <br>
                         <div id="droneDiv" style="visibility: hidden">
                             <div>Fleet: <span id="fleet">0</span> drones</div>
-                            <button id="hirebtn" onclick="deployDrone()">Deploy</button>
+                            <button id="deploybtn" onclick="deployDrone()">Deploy</button>
                             <div>Cost: $ <span id="droneCost">50.00</span></div>
                         </div>
                     </div>
@@ -232,7 +268,6 @@
 <script src="modal.js"></script>
 <script src="variables.js"></script>
 <script src="upgrades.js"></script>
-<!-- <script src="projects.js"></script> -->
 <script src="gamestatus.js"></script>
 <script src="main.js"></script>
 <!-- <script src="animation/animation.js" type="text/javascript"></script> -->

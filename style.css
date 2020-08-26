@@ -2,6 +2,43 @@
     display:flex
 }
 
+button#myBtn {
+    width: 250px;
+}
+
+.read-me {
+    background-color: #1c87c9;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+    border: none;
+    color: #eeeeee;
+    cursor: pointer;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+}
+@keyframes glowing {
+    0% {
+        background-color: lightseagreen;
+        box-shadow: 0 0 5px lightseagreen;
+    }
+    50% {
+        background-color: #19a7e8;
+        box-shadow: 0 0 20px #19a7e8;
+    }
+    100% {
+        background-color: lightseagreen;
+        box-shadow: 0 0 5px lightseagreen;
+    }
+}
+.read-me {
+    animation: glowing 1300ms infinite;
+}
+
+
 .animation-container {
     width: 700px;
     height: 300px;
@@ -86,7 +123,7 @@ h3 {
     margin-right: 10px;
 }
 
-.fab {
+.fab, .fas{
     font-size: 30px;
     margin: 8px;
     color: lightslategray;
@@ -237,12 +274,13 @@ p.message-new {
     font-family: 'Press Start 2P', cursive;
 }
 
-.instructions1 {
+.instructions {
     display: flex;
     margin: 10px;
     border-bottom: 1px solid lightgray;
-    height: 200px;
+    height: auto;
     align-items: center;
+    padding: 1rem;
 }
 #circle{
 
@@ -403,4 +441,76 @@ ul.nav {
     margin: 1rem;
     border-bottom: 1px solid lightgray;
     padding: .5rem;
+}
+
+.mod-content-container {
+    margin: 1rem;
+    padding: .5rem;
+}
+
+button#modal-click-btn {
+    width: 100px;
+}
+
+.screenshot1 {
+    background: url("screenshots/upgrades.png") no-repeat;
+    background-size: cover;
+    width: 650px;
+    height:200px;
+}
+.screenshot2 {
+    background: url("screenshots/automation.png") no-repeat;
+    background-size: cover;
+    width: 550px;
+    height:250px;
+}
+
+.mod-content-container p {
+    font-size: 16px;
+    font-family: monospace;
+    font-weight: 500;
+    width: auto
+}
+
+.mod-content-container h3 {
+    text-decoration: underline;
+}
+
+.appendix-section{
+    font-family: monospace;
+    font-size: 13px;
+}
+.appendix-head{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.appendix-list{
+    margin: .5rem;
+}
+
+.appendix-list li {
+    padding: .2rem;
+}
+
+strong {
+    font-size: 17px;
+}
+
+.targis-list li {
+    text-decoration: dotted;
+    padding: .2rem;
+}
+.targis-list {
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.game-instructions {
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
 }

@@ -82,6 +82,9 @@ function refresh() {
     // document.getElementById("displaySaleRate").textContent = displaySaleRate;
     document.getElementById("targisAwareness").innerHTML = targisKnowledge;
     document.getElementById("fleet").innerHTML = fleet;
+    document.getElementById("marketingLvl").innerHTML = marketingLvl;
+    document.getElementById("adCost").innerHTML = adCost;
+    document.getElementById( "droneCost" ).innerHTML = droneCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 
 
     document.getElementById("businessDiv").style = "visibility: visible";
