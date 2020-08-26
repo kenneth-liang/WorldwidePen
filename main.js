@@ -520,7 +520,7 @@ let mainLoop = window.setInterval(function () {
 
   increaseWorldOwned();
 
-  console.log("1")
+  // console.log("1")
 
 }, 10)
 
@@ -626,7 +626,7 @@ let slowLoop = window.setInterval(function(){
     milestone = 1;
   } 
 
-  console.log("2")
+  // console.log("2")
 
 
 },100)
