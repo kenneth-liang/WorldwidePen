@@ -9,44 +9,49 @@ function saveGame(){
     }
 
     let gameSaved = {
-      pens: pens,
-      funds: funds,
-      materials: materials,
-      matSupply: matSupply,
-      matPurchase: matPurchase,
-      purchaseMatAmt: purchaseMatAmt,
-      matCost: matCost,
-      hireCost: hireCost,
-      workForce: workForce,
-      saleRate: saleRate,
-      displaySaleRate: displaySaleRate,
-      saleRateTracker: saleRateTracker,
-      saleRateTemp: saleRateTemp,
-      prevPens: prevPens,
-      manufacturingStatus: manufacturingStatus,
-      blinkRate: blinkRate,
-      targisKnowledge: targisKnowledge,
-      targisAwake: targisAwake,
-      targis: targis,
-      matPriceTimer: matPriceTimer,
-      matBasePrice: matBasePrice,
-      matPriceCounter: matPriceCounter,
-      unsoldPens: unsoldPens,
-      transaction: transaction,
-      human: human,
-      demand: demand,
-      demandBoost: demandBoost,
-      income: income,
-      incomeTracker: incomeTracker,
-      margin: margin,
-      pensSold: pensSold,
-      penBoost: penBoost,
-      penmakerlevel: penmakerlevel,
-      marketing: marketing,
-      marketingLvl: marketingLvl,
-      marketingEffectiveness: marketingEffectiveness,
-      prestigeU: prestigeU,
-      autoBuy: autoBuy
+    pens: pens,
+    funds: funds,
+    materials: materials,
+    matSupply: matSupply,
+    matPurchase: matPurchase,
+    purchaseMatAmt: purchaseMatAmt,
+    matCost: matCost,
+    hireCost: hireCost,
+    workForce: workForce,
+    saleRate: saleRate,
+    displaySaleRate: displaySaleRate,
+    saleRateTracker: saleRateTracker,
+    saleRateTemp: saleRateTemp,
+    prevPens: prevPens,
+    manufacturingStatus: manufacturingStatus,
+    blinkRate: blinkRate,
+    targisKnowledge: targisKnowledge,
+    targisAwake: targisAwake,
+    targis: targis,
+    matPriceTimer: matPriceTimer,
+    matBasePrice: matBasePrice,
+    matPriceCounter: matPriceCounter,
+    unsoldPens: unsoldPens,
+    transaction: transaction,
+    human: human,
+    demand: demand,
+    demandBoost: demandBoost,
+    income: income,
+    incomeTracker: incomeTracker,
+    margin: margin,
+    pensSold: pensSold,
+    penBoost: penBoost,
+    penmakerlevel: penmakerlevel,
+    marketing: marketing,
+    marketingLvl: marketingLvl,
+    marketingEffectiveness: marketingEffectiveness,
+    prestigeU: prestigeU,
+    autoBuy: autoBuy,
+    droneFlag: droneFlag,
+    droneCost: droneCost,
+    fleet: fleet,
+    droneBoost: droneBoost,
+    statisticsFlag: statisticsFlag
     };
     
 
@@ -127,6 +132,11 @@ function loadGame(){
     marketingEffectiveness = game.marketingEffectiveness;
     prestigeU = game.prestigeU;
     autoBuy = game.autoBuy;
+    droneFlag = game.droneFlag;
+    droneCost = game.droneCost;
+    fleet = game.fleet;
+    droneBoost = game.droneBoost;
+    statisticsFlag = game.statisticsFlag;
 
     for (let i = 0; i < upgrades.length; i++){
         upgrades[i].uses = loadUpgradeUses[i];

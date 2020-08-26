@@ -35,4 +35,10 @@ marketing= game.marketing;
 marketingLvl= game.marketingLvl;
 marketingEffectiveness= game.marketingEffectiveness;
 prestigeU= game.prestigeU;
+autoBuy= game.autoBuy;
+droneFlag= game.droneFlag;
+droneCost= game.droneCost;
+fleet= game.fleet;
+droneBoost= game.droneBoost;
+statisticsFlag= game.statisticsFlag;
 

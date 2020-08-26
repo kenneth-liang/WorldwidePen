@@ -35,10 +35,11 @@ let marketing = 1;
 let marketingLvl= 1;
 let marketingEffectiveness = 1;
 let prestigeU = 0
-let autoBuy = 0
-let droneFlag = 0
-let droneCost = 500
-let fleet = 0
-let droneBoost = 1
-let statisticsFlag = 0
+
+autoBuy: autoBuy
+droneFlag: droneFlag
+droneCost: droneCost
+fleet: fleet
+droneBoost: droneBoost
+statisticsFlag: statisticsFlag
 
