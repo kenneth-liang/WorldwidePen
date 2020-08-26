@@ -389,3 +389,18 @@ div#globeDiv {
     margin-left: 1rem;
     font-size: 20px
 }
+
+
+/* Nav */
+
+ul.nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mod-header{
+    font-size: 24px;
+    margin: 1rem;
+    border-bottom: 1px solid lightgray;
+    padding: .5rem;
+}

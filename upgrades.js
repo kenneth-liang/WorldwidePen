@@ -282,19 +282,19 @@ let upgrade12 = {
 let upgrade13 = {
   id: "upgradeButton13",
   title: "Research Hyponosis Drones ",
-  priceTag: "$10000.00",
+  priceTag: "$5000.00",
   description: "Increase sales capabilities by 500%",
   message: "Deploying Weapons",
   messageAI: "I mean drones",
   uses: 1,
   cost: function () {
-    return funds >= 10000;
+    return funds >= 5000;
   },
   trigger: function () {
     return penBoost >= 6.0 && targisKnowledge >= 25;
   },
   effect: function () {
-    funds -= 10000;
+    funds -= 5000;
     penBoost += 5.0;
     handleNextMessage(upgrade13);
     removeUpgradeFromActive(upgrade13, 13);

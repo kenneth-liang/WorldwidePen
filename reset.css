@@ -44,3 +44,11 @@ table {
 div button{
     margin: 2px;
 }
+
+button {
+	cursor: pointer;
+}
+
+button:disabled {
+	cursor: not-allowed;
+}
