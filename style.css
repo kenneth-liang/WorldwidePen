@@ -49,7 +49,8 @@ button#myBtn {
 }
 
 .animation {
-    background-image: url("https://piskel-imgstore-b.appspot.com/img/56118f51-c8cf-11ea-bca2-311775629203.gif");
+    /* background-image: url("https://piskel-imgstore-b.appspot.com/img/56118f51-c8cf-11ea-bca2-311775629203.gif"); */
+    background-image: url("/Users/kenneth/Desktop/Projects/WorldwidePen/worldwidepen.jpg");
     background-size: cover;
     border-radius: 6px;
     height: 100%;
