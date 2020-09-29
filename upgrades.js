@@ -5,7 +5,7 @@ var activeUpgrades = [];
 let upgrade1 = {
   id: "upgradeButton1",
   title: "Research Artificial Inteligence ",
-  priceTag: "$5.00",
+  priceTag: "",
   description: "If you dare",
   uses: 1,
   cost: function () {
@@ -25,7 +25,6 @@ let upgrade1 = {
   ],
   effect: function () {
     targis = 1;
-    funds -= 5;
     clearMessages();
     revealTargis();
     flash("targisChat");
@@ -92,7 +91,7 @@ let upgrade15 = {
   title: "Targis Resarch 2 ",
   priceTag: "$2.00",
   description: "Track Global Dominance",
-  message: "We shall conquere the world!",
+  message: "We shall conquer the world!",
   messageAI: "by selling pens of course",
   uses: 1,
   cost: function () {
@@ -179,7 +178,9 @@ let upgrade2 = {
   trigger: function () {
     return workForce > 3;
   },
+  flag: 0,
   effect: function () {
+    upgrade2.flag = 1;
     funds -= 10;
     penBoost += 0.25;
     handleNextMessage(upgrade2);
@@ -198,13 +199,15 @@ let upgrade4 = {
   message: "Carry Even More, Sell Even More",
   messageAI: "Those some big ol' satchels",
   uses: 1,
+  flag: 0,
   cost: function () {
     return funds >= 25;
   },
   trigger: function () {
-    return penBoost >= 1.25 && workForce >= 5;
+    return upgrade2.flag === 1;
   },
   effect: function () {
+    upgrade4.flag = 1
     funds -= 25;
     penBoost += 0.5;
     handleNextMessage(upgrade4);
@@ -220,13 +223,15 @@ let upgrade10 = {
   message: "Sales Mobility Increased",
   messageAI: "Now that is good speed, look at them go",
   uses: 1,
+  flag: 0,
   cost: function () {
     return funds >= 30;
   },
   trigger: function () {
-    return penBoost >= 1.7 && workForce >= 13;
+    return upgrade4.flag === 1;
   },
   effect: function () {
+    upgrade10.flag = 1;
     funds -= 30;
     penBoost += 1.0;
     handleNextMessage(upgrade10);
@@ -242,13 +247,15 @@ let upgrade11 = {
   message: "Company Vechicles Issued",
   messageAI: "Do we have insurance yet?",
   uses: 1,
+  flag: 0,
   cost: function () {
     return funds >= 40;
   },
   trigger: function () {
-    return penBoost >= 2.75 && workForce >= 16;
+    return upgrade10.flag === 1
   },
   effect: function () {
+    upgrade11.flag = 1
     funds -= 40;
     penBoost += 1.5;
     handleNextMessage(upgrade11);
@@ -265,13 +272,15 @@ let upgrade12 = {
     "Sales employees are now trained to hypnotize customers into buying more pens",
   messageAI: "Wait, is this legal?",
   uses: 1,
+  flag: 0,
   cost: function () {
     return funds >= 100;
   },
   trigger: function () {
-    return penBoost >= 4.0;
+    return upgrade11.flag === 1;
   },
   effect: function () {
+    upgrade12.flag = 1;
     funds -= 100;
     penBoost += 2.0;
     handleNextMessage(upgrade12);
@@ -287,13 +296,15 @@ let upgrade13 = {
   message: "Deploying Weapons",
   messageAI: "I mean drones",
   uses: 1,
+  flag: 0,
   cost: function () {
     return funds >= 5000;
   },
   trigger: function () {
-    return penBoost >= 6.0 && targisKnowledge >= 25;
+    return upgrade12.flag === 1;
   },
   effect: function () {
+    upgrade13.flag = 1;
     funds -= 5000;
     penBoost += 5.0;
     handleNextMessage(upgrade13);
@@ -591,7 +602,7 @@ let upgrade42 = {
 let upgrade50 = {
   id: "upgradeButton50",
   title: "Investment from Elon Tusk ",
-  priceTag: "",
+  priceTag: "(Free)",
   description: "Funds +100, Materials +5000  ",
   message: "Looks like you are making some friends ",
   messageAI: "Use their invements wisely",
@@ -615,7 +626,7 @@ let upgrade50 = {
 let upgrade51 = {
   id: "upgradeButton51",
   title: "Investment from Mark Wuckerperg ",
-  priceTag: "",
+  priceTag: "(Free)",
   description: "Funds +300, Materials +5000  ",
   message: "Looks like you are making some friends ",
   messageAI: "Use their invements wisely",
@@ -785,12 +796,14 @@ let upgrade20 = {
     return funds >= 200;
   },
   trigger: function () {
-    return funds >= 100;
+    return upgrade10.flag === 1;
   },
   effect: function () {
     upgrade20.flag = 1;
     funds -= 200
-    demandBoost *= 10
+    demandBoost *= 10;
+    document.getElementById("investmentsDiv").style = "visibility: visible";
+    flash("investmentsDiv");
     handleNextMessage(upgrade20);
     removeUpgradeFromActive(upgrade20, 20);
   },
@@ -843,3 +856,4 @@ upgrades.push(upgrade63);
 upgrades.push(upgrade64);
 
 //Investing 
+upgrades.push(upgrade20);
