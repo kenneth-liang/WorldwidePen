@@ -249,7 +249,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="contentContainer" id="investmentsDiv" >
+                <div class="contentContainer" id="investmentsDiv" style="visibility: hidden">
                     <h3>Investments</h3>
                     <select id="investStrat">
                         <option value="low">Low Risk</option>
@@ -316,6 +316,12 @@
                             <td id="stock5Profit"><b>&nbsp</b></td>
                         </tr>
                     </table>
+                    <br>
+                    <div id="investmentEngineUpgrade">
+                        <button class="button2" id="btnImproveInvestments" onclick="investUpgrade()">Upgrade Investment Engine</button><span
+                            class="engineText7"> Level: </span><span class="engineText7" id="investmentLevel">0</span><br />
+                        <p class="engineText8">Cost: $<span id="investUpgradeCost">100</span></p>
+                    </div>
                 </div>
             </div>
 
