@@ -202,7 +202,7 @@ let upgrade4 = {
     return funds >= 25;
   },
   trigger: function () {
-    return penBoost >= 1.25 && workForce >= 8;
+    return penBoost >= 1.25 && workForce >= 5;
   },
   effect: function () {
     funds -= 25;
@@ -331,7 +331,7 @@ let upgrade7 = {
   id: "upgradeButton7",
   title: "Bargaining For Dummies ",
   priceTag: "$100.00",
-  description: "Increase Materials Purchased by 50%",
+  description: "Increase Materials Purchased by 100%",
   message: "Purchasing at 1875",
   messageAI: "More materials gained at each purchase",
   uses: 1,
@@ -343,7 +343,7 @@ let upgrade7 = {
   },
   effect: function () {
     funds -= 100;
-    matSupply *= 1.5;
+    matSupply *= 2.0;
     flash("matSupply");
     handleNextMessage(upgrade7);
     removeUpgradeFromActive(upgrade7, 7);
@@ -393,7 +393,7 @@ let upgrade9 = {
   },
   effect: function () {
     funds -= 600;
-    matSupply *= 3.0;
+    matSupply *= 5.0;
     targisResearch(10);
     flash("matSupply");
     handleNextMessage(upgrade9);
@@ -430,7 +430,7 @@ let upgrade31 = {
   title: "Purchase Company Office ",
   priceTag: "$50.00",
   description: "Increases workforce Productivity ",
-  message: "Employee Hapiness Increased ",
+  message: "Employee Happiness Increased ",
   messageAI: "Do I get a desk too? ",
   uses: 1,
   cost: function () {
@@ -522,7 +522,7 @@ let upgrade40 = {
   id: "upgradeButton40",
   title: "Prismatic Alignment ",
   priceTag: "$1000.00",
-  description: "Increases Drone Efficiency  ",
+  description: "Increases Drone Performance 25%  ",
   message: "Drones aligned with Prismatic Beam  ",
   messageAI: "+6 dmg vs armored units, ... kidding ",
   uses: 1,
@@ -532,11 +532,58 @@ let upgrade40 = {
   trigger: function () {
     return fleet > 3;
   },
+  flag: 0,
   effect: function () {
+    upgrade40.flag = 1;
     funds -= 1000;
     droneBoost += 0.25;
     handleNextMessage(upgrade40);
     removeUpgradeFromActive(upgrade40, 40);
+    flash("fleet");
+  },
+};
+
+let upgrade41 = {
+  id: "upgradeButton41",
+  title: "Graviton Catapult ",
+  priceTag: "$1500.00",
+  description: "Increases Drone Performance by an additional 50%  ",
+  message: "Drones performance increased by 50%  ",
+  messageAI: "Drone Launch Speed Maximized ",
+  uses: 1,
+  cost: function () {
+    return funds >= 1500;
+  },
+  trigger: function () {
+    return upgrade40.flag === 1;
+  },
+  effect: function () {
+    funds -= 1500;
+    droneBoost += 0.50;
+    handleNextMessage(upgrade41);
+    removeUpgradeFromActive(upgrade41, 41);
+    flash("fleet");
+  },
+};
+let upgrade42 = {
+  id: "upgradeButton40",
+  title: "Flux Vanes ",
+  priceTag: "$2000.00",
+  description: "Increases Drone Performance by an additional 100%  ",
+  message: "Drones performance increased by 100%  ",
+  messageAI: "Warp Speed Technology Enabled ",
+  uses: 1,
+  cost: function () {
+    return funds >= 2000;
+  },
+  trigger: function () {
+    return upgrade41.flag === 1;
+  },
+  effect: function () {
+    funds -= 2000;
+    droneBoost += 1;
+    handleNextMessage(upgrade42);
+    removeUpgradeFromActive(upgrade42, 42);
     flash("fleet");
   },
 };
@@ -589,16 +636,174 @@ let upgrade51 = {
   },
 };
 
+let upgrade60 = {
+  id: "upgradeButton60",
+  title: "New Slogan ",
+  priceTag: "$200",
+  description: "Improve marketing effectiveness by 50% ",
+  message: "'A Pen that shows your attitude' ",
+  messageAI: "Marketing is now 50% more effective ",
+  
+  uses: 1,
+  cost: function () {
+    return funds >= 200;
+  },
+  trigger: function () {
+    return marketingFlag === 1;
+  },
+  flag: 0,
+  effect: function () {
+    upgrade60.flag = 1;
+    funds -= 200;
+    marketingEffectiveness *= 1.5;
+
+    handleNextMessage(upgrade60);
+    removeUpgradeFromActive(upgrade60, 60);
+    flash("funds");
+    flash("demand");
+
+  },
+};
+
+let upgrade61 = {
+  id: "upgradeButton61",
+  title: "Catchy Jingle ",
+  priceTag: "$300",
+  description: "Double marketing effectiveness ",
+  message: "I have a pen, I have an apple, APPLE PEN ",
+  messageAI: "Marketing is now twice as effective ",
+  uses: 1,
+  flag: 0,
+  cost: function () {
+    return funds >= 300;
+  },
+  trigger: function () {
+    return upgrade60.flag === 1;
+  },
+  effect: function () {
+    upgrade61.flag = 1;
+    funds -= 300
+    marketingEffectiveness *= 2.0
+
+    handleNextMessage(upgrade61);
+    removeUpgradeFromActive(upgrade61, 61);
+    flash("funds");
+    flash("demand");
+
+  },
+};
+
+let upgrade62 = {
+  id: "upgradeButton62",
+  title: "Hypno Harmonics ",
+  priceTag: "$1000",
+  description: "Use neuro-resonant frequencies to influence consumer behavior ",
+  message: "Marketing is now 5 times more effective ",
+  messageAI: "These ARE the pens you were looking for ",
+  uses: 1,
+  flag: 0,
+  cost: function () {
+    return funds >= 1000;
+  },
+  trigger: function () {
+    return upgrade61.flag === 1;
+  },
+  effect: function () {
+    upgrade62.flag = 1;
+    funds -= 1000
+    marketingEffectiveness *= 5.0
+
+    handleNextMessage(upgrade62);
+    removeUpgradeFromActive(upgrade62, 62);
+    flash("funds");
+    flash("demand");
+  },
+};
+
+let upgrade63 = {
+  id: "upgradeButton63",
+  title: "Hostile Takeover ",
+  priceTag: "$5000",
+  description: "Acquire a controlling interest in Global Tic, our biggest rival ",
+  message: "Global Tic acquired, public demand increased x5 ",
+  messageAI: "Join us, we have cookies ",
+  uses: 1,
+  flag: 0,
+  cost: function () {
+    return funds >= 5000;
+  },
+  trigger: function () {
+    return upgrade62.flag === 1;
+  },
+  effect: function () {
+    upgrade63.flag = 1;
+    funds -= 5000
+    demandBoost *=5
+    handleNextMessage(upgrade63);
+    removeUpgradeFromActive(upgrade63, 63);
+    flash("funds");
+    flash("demand");
+  },
+};
+
+let upgrade64 = {
+  id: "upgradeButton64",
+  title: "Full Monopoly ",
+  priceTag: "$10000",
+  description: "Establish full control over the world-wide pen market ",
+  message: "Full market monopoly achieved, public demand increased x10 ",
+  messageAI: "All your base are belong to us ",
+  uses: 1,
+  flag: 0,
+  cost: function () {
+    return funds >= 10000;
+  },
+  trigger: function () {
+    return upgrade63.flag === 1;
+  },
+  effect: function () {
+    upgrade64.flag = 1;
+    funds -= 10000
+    demandBoost *= 10
+    handleNextMessage(upgrade64);
+    removeUpgradeFromActive(upgrade64, 64);
+    flash("funds");
+    flash("demand");
+  },
+};
+
+let upgrade20 = {
+  id: "upgradeButton20",
+  title: "Algorithmic Trading ",
+  priceTag: "$200",
+  description: "Develop an investment engine for generating funds ",
+  message: "Investment engine unlocked ",
+  messageAI: "Building wealth is a marathon ",
+  uses: 1,
+  flag: 0,
+  cost: function () {
+    return funds >= 200;
+  },
+  trigger: function () {
+    return funds >= 100;
+  },
+  effect: function () {
+    upgrade20.flag = 1;
+    funds -= 200
+    demandBoost *= 10
+    handleNextMessage(upgrade20);
+    removeUpgradeFromActive(upgrade20, 20);
+  },
+};
+
+
+
 // Business
 upgrades.push(upgrade1);
 upgrades.push(upgrade2);
-upgrades.push(upgrade3);
 upgrades.push(upgrade4);
 upgrades.push(upgrade5);
 upgrades.push(upgrade6);
-upgrades.push(upgrade7);
-upgrades.push(upgrade8);
-upgrades.push(upgrade9);
 upgrades.push(upgrade10);
 upgrades.push(upgrade11);
 upgrades.push(upgrade12);
@@ -606,6 +811,13 @@ upgrades.push(upgrade13);
 upgrades.push(upgrade14);
 upgrades.push(upgrade15);
 upgrades.push(upgrade16);
+
+
+//Materials 
+upgrades.push(upgrade3);
+upgrades.push(upgrade7);
+upgrades.push(upgrade8);
+upgrades.push(upgrade9);
 
 // Free-bee
 upgrades.push(upgrade30);
@@ -616,7 +828,18 @@ upgrades.push(upgrade34);
 
 // drone
 upgrades.push(upgrade40);
+upgrades.push(upgrade41);
+upgrades.push(upgrade42);
 
 // Jail-Cards
 upgrades.push(upgrade50);
 upgrades.push(upgrade51);
+
+// Marketing
+upgrades.push(upgrade60);
+upgrades.push(upgrade61);
+upgrades.push(upgrade62);
+upgrades.push(upgrade63);
+upgrades.push(upgrade64);
+
+//Investing 
