@@ -284,8 +284,8 @@ function handleNextMessage(upgrade){
       displayMessage(upgrade.message);
       setTimeout(() => {
         displayMessage(upgrade.messageAI);
-      }, 500);
-    }, 500);
+      }, 800);
+    }, 800);
   })
 }
 
@@ -506,11 +506,11 @@ let mainLoop = window.setInterval(function () {
     document.getElementById("btnBuyMat").disabled = false; 
   }
 
-  if ( Math.round(avgSales) === 0) {
-    document.getElementById("btnLowPrice").classList.add("pulsate");
-  } else {
-    document.getElementById("btnLowPrice").classList.remove("pulsate");
-  }
+  // if ( Math.round(avgSales) === 0) {
+  //   document.getElementById("btnLowPrice").classList.add("pulsate");
+  // } else {
+  //   document.getElementById("btnLowPrice").classList.remove("pulsate");
+  // }
 
   if (funds > matCost && materials < 1) {
     document.getElementById("btnBuyMat").classList.add("pulsate");
@@ -592,43 +592,43 @@ let slowLoop = window.setInterval(function(){
 
   if (pens > 1000000) {// 1 million pens
     milestone = 20;
-  } else if (pens > 900000) {
+  } else if (pens > 950000) {
     milestone = 19;
-  } else if (pens > 800000) {
+  } else if (pens > 900000) {
     milestone = 18;
-  } else if (pens > 700000) {
+  } else if (pens > 850000) {
     milestone = 17;
-  } else if (pens > 600000) {
+  } else if (pens > 800000) {
     milestone = 16;
-  } else if (pens > 500000) {
+  } else if (pens > 750000) {
     milestone = 15;
-  } else if (pens > 400000) {
+  } else if (pens > 700000) {
     milestone = 14;
-  } else if (pens > 300000) {
+  } else if (pens > 650000) {
     milestone = 13;
-  } else if (pens > 200000) {
+  } else if (pens > 600000) {
     milestone = 12;
-  } else if (pens > 150000) {
+  } else if (pens > 550000) {
     milestone = 11;
-  } else if (pens > 90000) {
+  } else if (pens > 500000) {
     milestone = 10;
-  } else if (pens > 80000) {
+  } else if (pens > 450000) {
     milestone = 9;
-  } else if (pens > 7000) {
+  } else if (pens > 400000) {
     milestone = 8;
-  } else if (pens > 6000) {
+  } else if (pens > 350000) {
     milestone = 7;
-  } else if (pens > 5000) {
+  } else if (pens > 300000) {
     milestone = 6;
-  } else if (pens > 4000) {
+  } else if (pens > 250000) {
     milestone = 5;
-  } else if (pens > 3000) {
+  } else if (pens > 200000) {
     milestone = 4;
-  } else if (pens > 2000) {
+  } else if (pens > 150000) {
     milestone = 3;
-  } else if (pens > 1000) {
+  } else if (pens > 100000) {
     milestone = 2;
-  } else if (pens > 500) {
+  } else if (pens > 50000) {
     milestone = 1;
   } 
 
