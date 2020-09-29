@@ -186,11 +186,20 @@ button {
 
 .upgradeButton{
     margin: 5px;
+    /* border: 1px solid orange; */
+    padding: 1px;
+    /* box-shadow: 2px 4px #888888; */
+    box-shadow: 0 2px 8px rgba(153,153,153,.4);
+
+}
+
+.upgradeButton:hover{
+    transform: scale(1.05);
 }
 
 #leftDiv{
     float:left;
-    width: 315px;
+    width: 325px;
 }
 
 #middleDiv{
@@ -539,7 +548,8 @@ strong {
   width: 65%; 
   text-align: top;
   margin-top: 0; 
-  margin-left: 5px;    
+  margin-left: 5px;   
+  font-family: monospace;
 }
 
 table.table1 {
@@ -613,4 +623,8 @@ table.table1 tr:nth-child(even) {
 .button2:disabled {
    opacity: 0.6;
    border: 1px solid #ffffff;
+}
+
+#investmentEngineUpgrade {
+    font-family: monospace;
 }
