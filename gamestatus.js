@@ -9,54 +9,57 @@ function saveGame(){
     }
 
     let gameSaved = {
-    pens: pens,
-    funds: funds,
-    materials: materials,
-    matSupply: matSupply,
-    matPurchase: matPurchase,
-    purchaseMatAmt: purchaseMatAmt,
-    matCost: matCost,
-    hireCost: hireCost,
-    workForce: workForce,
-    saleRate: saleRate,
-    displaySaleRate: displaySaleRate,
-    saleRateTracker: saleRateTracker,
-    saleRateTemp: saleRateTemp,
-    prevPens: prevPens,
-    manufacturingStatus: manufacturingStatus,
-    blinkRate: blinkRate,
-    targisKnowledge: targisKnowledge,
-    targisAwake: targisAwake,
-    targis: targis,
-    matPriceTimer: matPriceTimer,
-    matBasePrice: matBasePrice,
-    matPriceCounter: matPriceCounter,
-    unsoldPens: unsoldPens,
-    transaction: transaction,
-    human: human,
-    demand: demand,
-    demandBoost: demandBoost,
-    income: income,
-    incomeTracker: incomeTracker,
-    margin: margin,
-    pensSold: pensSold,
-    penBoost: penBoost,
-    penmakerlevel: penmakerlevel,
-    marketing: marketing,
-    marketingLvl: marketingLvl,
-    marketingEffectiveness: marketingEffectiveness,
-    popularity: popularity,
-    autoBuy: autoBuy,
-    droneFlag: droneFlag,
-    droneCost: droneCost,
-    fleet: fleet,
-    droneBoost: droneBoost,
-    statisticsFlag: statisticsFlag,
-    adCost: adCost,
-    globeFlag: globeFlag,
-    worldOwned: worldOwned,
-    milestone: milestone,
-    marketingFlag: marketingFlag,
+      pens: pens,
+      funds: funds,
+      materials: materials,
+      matSupply: matSupply,
+      matPurchase: matPurchase,
+      purchaseMatAmt: purchaseMatAmt,
+      matCost: matCost,
+      hireCost: hireCost,
+      workForce: workForce,
+      saleRate: saleRate,
+      displaySaleRate: displaySaleRate,
+      saleRateTracker: saleRateTracker,
+      saleRateTemp: saleRateTemp,
+      prevPens: prevPens,
+      manufacturingStatus: manufacturingStatus,
+      blinkRate: blinkRate,
+      targisKnowledge: targisKnowledge,
+      targisAwake: targisAwake,
+      targis: targis,
+      matPriceTimer: matPriceTimer,
+      matBasePrice: matBasePrice,
+      matPriceCounter: matPriceCounter,
+      unsoldPens: unsoldPens,
+      transaction: transaction,
+      human: human,
+      demand: demand,
+      demandBoost: demandBoost,
+      income: income,
+      incomeTracker: incomeTracker,
+      margin: margin,
+      pensSold: pensSold,
+      penBoost: penBoost,
+      penmakerlevel: penmakerlevel,
+      marketing: marketing,
+      marketingLvl: marketingLvl,
+      marketingEffectiveness: marketingEffectiveness,
+      popularity: popularity,
+      autoBuy: autoBuy,
+      droneFlag: droneFlag,
+      droneCost: droneCost,
+      fleet: fleet,
+      droneBoost: droneBoost,
+      statisticsFlag: statisticsFlag,
+      adCost: adCost,
+      globeFlag: globeFlag,
+      worldOwned: worldOwned,
+      milestone: milestone,
+      marketingFlag: marketingFlag,
+      gameOkay: gameOkay,
+      investmentEngineFlag: investmentEngineFlag,
+      bankroll: bankroll,
     };
     
 
@@ -107,6 +110,11 @@ function refresh() {
 
     if (marketingFlag === 1) {
         document.getElementById("marketingDiv").style = "visibility: visible";
+    }
+
+    if (investmentEngineFlag === 1) {
+        document.getElementById("investmentsDiv").style = "visibility: visible";
+
     }
 
     
@@ -169,6 +177,9 @@ function loadGame(){
     worldOwned = game.worldOwned;
     milestone = game.milestone;
     marketingFlag = game.marketingFlag;
+    gameOkay= game.gameOkay
+    investmentEngineFlag= game.investmentEngineFlag
+    bankroll= game.bankroll
 
     for (let i = 0; i < upgrades.length; i++){
         upgrades[i].uses = loadUpgradeUses[i];
