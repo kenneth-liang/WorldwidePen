@@ -44,7 +44,7 @@
                         <h3>Getting Started:</h3>
                         <div class="instructions">
                             <div id="circle">
-                                <button id="modal-click-btn" class="clicker">Sell Pen</button>
+                                <button id="modal-click-btn" class="clicker">Make Pen</button>
                             </div>
                             <div id="mouse-image"></div>
                             <div id="stepone">
@@ -166,8 +166,8 @@
                 <div class="pens-container">
                     <h2>Pens: <span id=pens>0</span></h2>
                     <div id="gameDiv" class="contentContainer">
-                        <span>Click Here!</span>
-                        <button class="clicker" onclick="penClick(1)">Sell Pen</button>
+                        <!-- <span>Click Here!</span> -->
+                        <button class="clicker" onclick="penClick(1)">Make Pen</button>
                     </div>
                 </div>
                 <div id="globeDiv" class="globe-container" style="visibility: hidden">
@@ -200,7 +200,16 @@
                                 <br />
                         </div>
                     </div>
-                    
+                </div>
+                <div class="contentContainer" id="statsDiv" style="visibility: hidden">
+                    <h3>Statistics</h3>
+                    <div class="subcontent">
+                        <div>Public Demand: <span id="demand">10</span>%</div>
+                        <!-- <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div> -->
+                        <div>Unsold Inventory: <span id="unsoldPens">0</span></div>
+                        <div>Avg. Rev. per sec: $ <span id="avgRev">0</span></div>
+                        <div>Avg. Pens Sold per sec: <span id="avgSales">0</span></div>
+                    </div>
                 </div>
                 <div id="productionDiv" class="contentContainer" style="visibility: hidden">
                     <div id="materialsDiv">
@@ -240,16 +249,73 @@
                         </div>
                     </div>
                 </div>
-                <div class="contentContainer" id="statsDiv" style="visibility: hidden">
-                    <h3>Statistics</h3>
-                    <div class="subcontent">
-                        <div>Public Demand: <span id="demand">10</span>%</div>
-                        <!-- <div>Pens Sold per Second: <span id="displaySaleRate">0</span></div> -->
-                        <div>Unsold Inventory: <span id="unsoldPens">0</span></div>
-                        <div>Avg. Rev. per sec: $ <span id="avgRev">0</span></div>
-                        <div>Avg. Pens Sold per sec: <span  id="avgSales">0</span></div>
+                <div class="contentContainer" id="investmentsDiv" >
+                    <h3>Investments</h3>
+                    <select id="investStrat">
+                        <option value="low">Low Risk</option>
+                        <option value="med">Med Risk</option>
+                        <option value="hi">High Risk</option>
+                    </select>
+                    <div id=investmentDiv1>
+                    
+                        <button class="button2" id="btnInvest" onclick="investDeposit()">&nbsp Deposit &nbsp</button><br /><br />
+                    
+                        <button class="button2" id="btnWithdraw" onclick="investWithdraw()">&nbsp Withdraw</button>
+                    
                     </div>
-
+                    <div id=investmentDiv2>
+                        <p class="clean">
+                            Cash: $<span id="investmentBankroll">0</span><br />
+                            Stocks: $<span id="secValue">0</span><br />
+                            <b>Total: $<span id="portValue">0</span></b><br />
+                        </p>
+                    </div>
+                    
+                    <table class="table1">
+                        <tr>
+                            <th>Stock</th>
+                            <th>Amt.</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>P/L</th>
+                        </tr>
+                    
+                        <tr id="stock1Display">
+                            <td id="stock1Symbol">&nbsp</td>
+                            <td id="stock1Amount">&nbsp</td>
+                            <td id="stock1Price">&nbsp</td>
+                            <td id="stock1Total">&nbsp</td>
+                            <td id="stock1Profit"><b>&nbsp</b></td>
+                        </tr>
+                        <tr id="stock2Display">
+                            <td id="stock2Symbol">&nbsp</td>
+                            <td id="stock2Amount">&nbsp</td>
+                            <td id="stock2Price">&nbsp</td>
+                            <td id="stock2Total">&nbsp</td>
+                            <td id="stock2Profit"><b>&nbsp</b></td>
+                        </tr>
+                        <tr id="stock3Display">
+                            <td id="stock3Symbol">&nbsp</td>
+                            <td id="stock3Amount">&nbsp</td>
+                            <td id="stock3Price">&nbsp</td>
+                            <td id="stock3Total">&nbsp</td>
+                            <td id="stock3Profit"><b>&nbsp</b></td>
+                        </tr>
+                        <tr id="stock4Display">
+                            <td id="stock4Symbol">&nbsp</td>
+                            <td id="stock4Amount">&nbsp</td>
+                            <td id="stock4Price">&nbsp</td>
+                            <td id="stock4Total">&nbsp</td>
+                            <td id="stock4Profit"><b>&nbsp</b></td>
+                        </tr>
+                        <tr id="stock5Display">
+                            <td id="stock5Symbol">&nbsp</td>
+                            <td id="stock5Amount">&nbsp</td>
+                            <td id="stock5Price">&nbsp</td>
+                            <td id="stock5Total">&nbsp</td>
+                            <td id="stock5Profit"><b>&nbsp</b></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
