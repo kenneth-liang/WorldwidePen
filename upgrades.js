@@ -464,7 +464,7 @@ let upgrade32 = {
   title: "Purchase Sales Team Bagels ",
   priceTag: "$7.00",
   description: "Increases workforce Productivity ",
-  message: "Employee Hapiness Increased ",
+  message: "Employee Happiness Increased ",
   messageAI: "I like my Bagles byte sized ",
   uses: 1,
   cost: function () {
@@ -486,7 +486,7 @@ let upgrade33 = {
   title: "Purchase Sales Team Coffee ",
   priceTag: "$15.00",
   description: "Increases workforce Productivity ",
-  message: "Employee Hapiness Increased ",
+  message: "Employee Happiness Increased ",
   messageAI: "drinkCoffee() ",
   uses: 1,
   cost: function () {
@@ -509,7 +509,7 @@ let upgrade34 = {
   title: "Company Holiday Party ",
   priceTag: "$100.00",
   description: "Increases workforce Productivity ",
-  message: "Employee Hapiness Increased ",
+  message: "Employee Happiness Increased ",
   messageAI: "Issa Party Issa Party Aye ",
   uses: 1,
   cost: function () {
@@ -802,6 +802,7 @@ let upgrade20 = {
     upgrade20.flag = 1;
     funds -= 200
     demandBoost *= 10;
+    investmentEngineFlag = 1
     document.getElementById("investmentsDiv").style = "visibility: visible";
     flash("investmentsDiv");
     handleNextMessage(upgrade20);
