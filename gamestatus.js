@@ -88,7 +88,10 @@ function refresh() {
     document.getElementById("marketingLvl").innerHTML = marketingLvl;
     document.getElementById("adCost").innerHTML = adCost;
     document.getElementById( "droneCost" ).innerHTML = droneCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, });
-
+    document.getElementById('investmentBankroll').innerHTML = bankroll.toLocaleString();
+    document.getElementById('secValue').innerHTML = secTotal.toLocaleString();
+    document.getElementById('portValue').innerHTML = portTotal.toLocaleString();
+    document.getElementById("investUpgradeCost").innerHTML=investUpgradeCost.toLocaleString();
 
     document.getElementById("businessDiv").style = "visibility: visible";
     document.getElementById("productionDiv").style = "visibility: visible";
@@ -111,7 +114,7 @@ function refresh() {
     if (marketingFlag === 1) {
         document.getElementById("marketingDiv").style = "visibility: visible";
     }
-
+    console.log(investmentEngineFlag)
     if (investmentEngineFlag === 1) {
         document.getElementById("investmentsDiv").style = "visibility: visible";
 
