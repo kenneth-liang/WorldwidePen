@@ -543,6 +543,7 @@ strong {
   float: left;
   /* width: 64px;  */
   line-height: 20%;    
+  margin-right: 5px;
 }
 
 #investmentDiv2 {
@@ -629,4 +630,13 @@ table.table1 tr:nth-child(even) {
 
 #investmentEngineUpgrade {
     font-family: monospace;
+}
+
+#btnInvest, #btnWithdraw  {
+    margin: 0;
+    width: 100%;
+}
+
+#btnImproveInvestments {
+    margin: 0px
 }
