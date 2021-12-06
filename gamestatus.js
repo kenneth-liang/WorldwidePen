@@ -97,11 +97,12 @@ function refresh() {
     document.getElementById("productionDiv").style = "visibility: visible";
     document.getElementById("salesDiv").style = "visibility: visible";
     if (autoBuy === 1) {
-        
+
         document.getElementById("autoBuy").style = "visibility: visible";
     }
 
     if (statisticsFlag === 1) {
+        
         document.getElementById("statsDiv").style = "visibility: visible";
     }
 
